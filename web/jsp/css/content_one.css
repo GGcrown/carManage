@@ -1,0 +1,41 @@
+html {
+	height: 95%;
+	/*width: 98%;*/
+	/*margin: 5px;*/
+	border: 8px solid #F5F7FA;
+}
+
+body {
+	height: 100%;
+	width: 100%;
+	/*外边距*/
+	margin: 0px;
+	/*内边距*/
+	padding: 0px;
+}
+
+a {
+	outline: none !important;
+	/*取消下滑线*/
+	text-decoration: none;
+	color: #555555;
+}
+
+li {
+	list-style: none;
+}
+
+.index {
+	display: inline;
+	font-size: 13px;
+	color: #555555;
+	padding: 0px 3px;
+}
+
+.index>span {
+	padding-right: 6px;
+}
+
+.indexhome {
+	color: #4c8fbd;
+}

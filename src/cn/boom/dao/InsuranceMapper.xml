@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.boom.dao.InsuranceMapper">
+	<resultMap id="BaseResultMap" type="cn.boom.pojo.Insurance">
+		<id column="insure_id" property="insureId" jdbcType="INTEGER" />
+		<result column="insure_time" property="insureTime" jdbcType="DATE" />
+		<result column="insure_typeofinsurance" property="insureTypeofinsurance"
+			jdbcType="VARCHAR" />
+		<result column="insure_company" property="insureCompany"
+			jdbcType="VARCHAR" />
+		<result column="insurance_startTime" property="insuranceStarttime"
+			jdbcType="DATE" />
+		<result column="insurance_endTime" property="insuranceEndtime"
+			jdbcType="DATE" />
+		<result column="deptname" property="deptname" jdbcType="VARCHAR" />
+		<result column="filePath" property="filepath" jdbcType="VARCHAR" />
+		<result column="insure_type" property="insureType" jdbcType="INTEGER" />
+		<result column="carid" property="carid" jdbcType="INTEGER" />
+		<result column="userid" property="userid" jdbcType="INTEGER" />
+		<result column="reserve1" property="reserve1" jdbcType="VARCHAR" />
+		<result column="reserve2" property="reserve2" jdbcType="VARCHAR" />
+		<result column="reserve3" property="reserve3" jdbcType="VARCHAR" />
+		<result column="reserve4" property="reserve4" jdbcType="VARCHAR" />
+		<result column="reserve5" property="reserve5" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" suffix=")" prefixOverrides="and">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value}
+									and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach collection="criterion.value" item="listItem"
+										open="(" close=")" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		insure_id, insure_time, insure_typeofinsurance,
+		insure_company,
+		insurance_startTime,
+		insurance_endTime, deptname,
+		filePath, insure_type, carid, userid, reserve1, reserve2,
+		reserve3,
+		reserve4, reserve5
+	</sql>
+	<select id="selectByExample" resultMap="BaseResultMap"
+		parameterType="cn.boom.pojo.InsuranceExample">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from insurance
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from insurance
+		where insure_id = #{insureId,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from
+		insurance
+		where insure_id = #{insureId,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="cn.boom.pojo.InsuranceExample">
+		delete from insurance
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="cn.boom.pojo.Insurance">
+		insert into insurance
+		(insure_id, insure_time, insure_typeofinsurance,
+		insure_company,
+		insurance_startTime, insurance_endTime,
+		deptname, filePath,
+		insure_type,
+		carid, userid, reserve1,
+		reserve2, reserve3, reserve4,
+		reserve5)
+		values (#{insureId,jdbcType=INTEGER},
+		#{insureTime,jdbcType=DATE},
+		#{insureTypeofinsurance,jdbcType=VARCHAR},
+		#{insureCompany,jdbcType=VARCHAR},
+		#{insuranceStarttime,jdbcType=DATE},
+		#{insuranceEndtime,jdbcType=DATE},
+		#{deptname,jdbcType=VARCHAR},
+		#{filepath,jdbcType=VARCHAR}, #{insureType,jdbcType=INTEGER},
+		#{carid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER},
+		#{reserve1,jdbcType=VARCHAR},
+		#{reserve2,jdbcType=VARCHAR},
+		#{reserve3,jdbcType=VARCHAR}, #{reserve4,jdbcType=VARCHAR},
+		#{reserve5,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="cn.boom.pojo.Insurance">
+		insert into insurance
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="insureId != null">
+				insure_id,
+			</if>
+			<if test="insureTime != null">
+				insure_time,
+			</if>
+			<if test="insureTypeofinsurance != null">
+				insure_typeofinsurance,
+			</if>
+			<if test="insureCompany != null">
+				insure_company,
+			</if>
+			<if test="insuranceStarttime != null">
+				insurance_startTime,
+			</if>
+			<if test="insuranceEndtime != null">
+				insurance_endTime,
+			</if>
+			<if test="deptname != null">
+				deptname,
+			</if>
+			<if test="filepath != null">
+				filePath,
+			</if>
+			<if test="insureType != null">
+				insure_type,
+			</if>
+			<if test="carid != null">
+				carid,
+			</if>
+			<if test="userid != null">
+				userid,
+			</if>
+			<if test="reserve1 != null">
+				reserve1,
+			</if>
+			<if test="reserve2 != null">
+				reserve2,
+			</if>
+			<if test="reserve3 != null">
+				reserve3,
+			</if>
+			<if test="reserve4 != null">
+				reserve4,
+			</if>
+			<if test="reserve5 != null">
+				reserve5,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="insureId != null">
+				#{insureId,jdbcType=INTEGER},
+			</if>
+			<if test="insureTime != null">
+				#{insureTime,jdbcType=DATE},
+			</if>
+			<if test="insureTypeofinsurance != null">
+				#{insureTypeofinsurance,jdbcType=VARCHAR},
+			</if>
+			<if test="insureCompany != null">
+				#{insureCompany,jdbcType=VARCHAR},
+			</if>
+			<if test="insuranceStarttime != null">
+				#{insuranceStarttime,jdbcType=DATE},
+			</if>
+			<if test="insuranceEndtime != null">
+				#{insuranceEndtime,jdbcType=DATE},
+			</if>
+			<if test="deptname != null">
+				#{deptname,jdbcType=VARCHAR},
+			</if>
+			<if test="filepath != null">
+				#{filepath,jdbcType=VARCHAR},
+			</if>
+			<if test="insureType != null">
+				#{insureType,jdbcType=INTEGER},
+			</if>
+			<if test="carid != null">
+				#{carid,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				#{userid,jdbcType=INTEGER},
+			</if>
+			<if test="reserve1 != null">
+				#{reserve1,jdbcType=VARCHAR},
+			</if>
+			<if test="reserve2 != null">
+				#{reserve2,jdbcType=VARCHAR},
+			</if>
+			<if test="reserve3 != null">
+				#{reserve3,jdbcType=VARCHAR},
+			</if>
+			<if test="reserve4 != null">
+				#{reserve4,jdbcType=VARCHAR},
+			</if>
+			<if test="reserve5 != null">
+				#{reserve5,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="cn.boom.pojo.InsuranceExample"
+		resultType="java.lang.Integer">
+		select count(*) from insurance
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update insurance
+		<set>
+			<if test="record.insureId != null">
+				insure_id = #{record.insureId,jdbcType=INTEGER},
+			</if>
+			<if test="record.insureTime != null">
+				insure_time = #{record.insureTime,jdbcType=DATE},
+			</if>
+			<if test="record.insureTypeofinsurance != null">
+				insure_typeofinsurance =
+				#{record.insureTypeofinsurance,jdbcType=VARCHAR},
+			</if>
+			<if test="record.insureCompany != null">
+				insure_company =
+				#{record.insureCompany,jdbcType=VARCHAR},
+			</if>
+			<if test="record.insuranceStarttime != null">
+				insurance_startTime =
+				#{record.insuranceStarttime,jdbcType=DATE},
+			</if>
+			<if test="record.insuranceEndtime != null">
+				insurance_endTime =
+				#{record.insuranceEndtime,jdbcType=DATE},
+			</if>
+			<if test="record.deptname != null">
+				deptname = #{record.deptname,jdbcType=VARCHAR},
+			</if>
+			<if test="record.filepath != null">
+				filePath = #{record.filepath,jdbcType=VARCHAR},
+			</if>
+			<if test="record.insureType != null">
+				insure_type = #{record.insureType,jdbcType=INTEGER},
+			</if>
+			<if test="record.carid != null">
+				carid = #{record.carid,jdbcType=INTEGER},
+			</if>
+			<if test="record.userid != null">
+				userid = #{record.userid,jdbcType=INTEGER},
+			</if>
+			<if test="record.reserve1 != null">
+				reserve1 = #{record.reserve1,jdbcType=VARCHAR},
+			</if>
+			<if test="record.reserve2 != null">
+				reserve2 = #{record.reserve2,jdbcType=VARCHAR},
+			</if>
+			<if test="record.reserve3 != null">
+				reserve3 = #{record.reserve3,jdbcType=VARCHAR},
+			</if>
+			<if test="record.reserve4 != null">
+				reserve4 = #{record.reserve4,jdbcType=VARCHAR},
+			</if>
+			<if test="record.reserve5 != null">
+				reserve5 = #{record.reserve5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update insurance
+		set insure_id = #{record.insureId,jdbcType=INTEGER},
+		insure_time = #{record.insureTime,jdbcType=DATE},
+		insure_typeofinsurance =
+		#{record.insureTypeofinsurance,jdbcType=VARCHAR},
+		insure_company =
+		#{record.insureCompany,jdbcType=VARCHAR},
+		insurance_startTime =
+		#{record.insuranceStarttime,jdbcType=DATE},
+		insurance_endTime =
+		#{record.insuranceEndtime,jdbcType=DATE},
+		deptname =
+		#{record.deptname,jdbcType=VARCHAR},
+		filePath =
+		#{record.filepath,jdbcType=VARCHAR},
+		insure_type =
+		#{record.insureType,jdbcType=INTEGER},
+		carid =
+		#{record.carid,jdbcType=INTEGER},
+		userid =
+		#{record.userid,jdbcType=INTEGER},
+		reserve1 =
+		#{record.reserve1,jdbcType=VARCHAR},
+		reserve2 =
+		#{record.reserve2,jdbcType=VARCHAR},
+		reserve3 =
+		#{record.reserve3,jdbcType=VARCHAR},
+		reserve4 =
+		#{record.reserve4,jdbcType=VARCHAR},
+		reserve5 =
+		#{record.reserve5,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="cn.boom.pojo.Insurance">
+		update insurance
+		<set>
+			<if test="insureTime != null">
+				insure_time = #{insureTime,jdbcType=DATE},
+			</if>
+			<if test="insureTypeofinsurance != null">
+				insure_typeofinsurance =
+				#{insureTypeofinsurance,jdbcType=VARCHAR},
+			</if>
+			<if test="insureCompany != null">
+				insure_company = #{insureCompany,jdbcType=VARCHAR},
+			</if>
+			<if test="insuranceStarttime != null">
+				insurance_startTime =
+				#{insuranceStarttime,jdbcType=DATE},
+			</if>
+			<if test="insuranceEndtime != null">
+				insurance_endTime = #{insuranceEndtime,jdbcType=DATE},
+			</if>
+			<if test="deptname != null">
+				deptname = #{deptname,jdbcType=VARCHAR},
+			</if>
+			<if test="filepath != null">
+				filePath = #{filepath,jdbcType=VARCHAR},
+			</if>
+			<if test="insureType != null">
+				insure_type = #{insureType,jdbcType=INTEGER},
+			</if>
+			<if test="carid != null">
+				carid = #{carid,jdbcType=INTEGER},
+			</if>
+			<if test="userid != null">
+				userid = #{userid,jdbcType=INTEGER},
+			</if>
+			<if test="reserve1 != null">
+				reserve1 = #{reserve1,jdbcType=VARCHAR},
+			</if>
+			<if test="reserve2 != null">
+				reserve2 = #{reserve2,jdbcType=VARCHAR},
+			</if>
+			<if test="reserve3 != null">
+				reserve3 = #{reserve3,jdbcType=VARCHAR},
+			</if>
+			<if test="reserve4 != null">
+				reserve4 = #{reserve4,jdbcType=VARCHAR},
+			</if>
+			<if test="reserve5 != null">
+				reserve5 = #{reserve5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where insure_id = #{insureId,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="cn.boom.pojo.Insurance">
+		update insurance
+		set insure_time = #{insureTime,jdbcType=DATE},
+		insure_typeofinsurance =
+		#{insureTypeofinsurance,jdbcType=VARCHAR},
+		insure_company =
+		#{insureCompany,jdbcType=VARCHAR},
+		insurance_startTime =
+		#{insuranceStarttime,jdbcType=DATE},
+		insurance_endTime =
+		#{insuranceEndtime,jdbcType=DATE},
+		deptname =
+		#{deptname,jdbcType=VARCHAR},
+		filePath = #{filepath,jdbcType=VARCHAR},
+		insure_type = #{insureType,jdbcType=INTEGER},
+		carid =
+		#{carid,jdbcType=INTEGER},
+		userid = #{userid,jdbcType=INTEGER},
+		reserve1 = #{reserve1,jdbcType=VARCHAR},
+		reserve2 =
+		#{reserve2,jdbcType=VARCHAR},
+		reserve3 = #{reserve3,jdbcType=VARCHAR},
+		reserve4 = #{reserve4,jdbcType=VARCHAR},
+		reserve5 =
+		#{reserve5,jdbcType=VARCHAR}
+		where insure_id =
+		#{insureId,jdbcType=INTEGER}
+	</update>
+
+	<!-- oneself -->
+	<select id="selectCarByPage" parameterType="int" resultMap="BaseResultMap">
+		select * from insurance limit #{0} ,5
+	</select>
+
+
+
+</mapper>
