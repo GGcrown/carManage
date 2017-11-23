@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+
 /**
  * @author crown
  * @ClassName UserController
@@ -42,16 +44,22 @@ public class UserController {
     @RequestMapping("/addUserAjax")
     @ResponseBody
     public int addUserAjax(@RequestBody User user) {
-        boolean check = checkUserData(user);
-        if (check) {
-//            userService.addUser(user);
+        //验证用户数据
+        if (checkUserData(user)) {
+            int reuslt=userService.addUser(user);
         }
+
+
         return 0;
     }
 
     @RequestMapping("/deleteUserByIdAjax")
     @ResponseBody
     public int deleteUserAjax(int userid) {
+        //验证id
+        if(checkUserId(userid)){
+            int result=userService.deleteUser(userid);
+        }
         return 0;
     }
 
@@ -59,22 +67,33 @@ public class UserController {
     @RequestMapping("/updateUserAjax")
     @ResponseBody
     public int updateUserAjax(@RequestBody User user) {
-        boolean check = checkUserData(user);
-        if (check) {
-            //TODO
+        //验证用户数据
+        if (checkUserData(user)) {
+            int result=userService.updateUser(user);
         }
         return 0;
     }
 
-    @RequestMapping("findUserByIdAjax")
+    @RequestMapping("/findUserListAjax")
+    public List<User> findUserListAjax(int page){
+        List<User> users= userService.findUserList(page);
+        return users;
+    }
+
+    @RequestMapping("/findUserByIdAjax")
     @ResponseBody
     public User findUserByIdAjax(int userid) {
+        //验证id
+        if(checkUserId(userid)){
+            User user=userService.findUser(userid);
+        }
         return null;
     }
 
     @RequestMapping("/countUserAjax")
     @ResponseBody
     public UserVo countUserAjax() {
+        int count=userService.countUser();
         return null;
     }
 
@@ -92,27 +111,18 @@ public class UserController {
             return false;
         }
         //判断是否为空字符串
-        if ("".equals(user.getUserid()) || "".equals(user.getUsername()) || "".equals(user.getPassword())
-                || "".equals(user.getUsertype())) {
-            return false;
-        }
-        return true;
+        return !"".equals(user.getUserid()) && !"".equals(user.getUsername()) && !"".equals(user.getPassword())
+                && !"".equals(user.getUsertype());
     }
 
     /**
-     * 验证用户数据有效性
+     * 验证用户id有效性
      *
      * @param userId
      * @return True:数据有效    False:数据无效
      */
     public boolean checkUserId(int userId) {
-        if (userId < 1) {
-            return false;
-        }
-        if (true) {
-
-        }
-        return true;
+        return userId >= 1;
     }
 
 }

@@ -9,6 +9,8 @@ package cn.boom.service;
 
 import cn.boom.pojo.User;
 
+import java.util.List;
+
 /**
  * @ClassName UserService
  * @Description TODO
@@ -20,4 +22,15 @@ public interface UserService {
 	
 	public User findUser(String userName);
 
+    public int addUser(User user);
+
+    public int deleteUser(int userid);
+
+    public User findUser(int userid);
+
+    public int countUser();
+
+    public int updateUser(User user);
+
+    public List<User> findUserList(int page);
 }

@@ -18,4 +18,5 @@ public class Page {
 
 	public static final int CARPAGE = 5;// 车辆分页数
 	public static final int INSURANCEPAGE = 5;// 保险分页数
+	public static final int USERPAGE=5;//用户分页数
 }

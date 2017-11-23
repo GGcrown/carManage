@@ -2,8 +2,9 @@ package cn.boom.dao;
 
 import cn.boom.pojo.User;
 import cn.boom.pojo.UserExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface UserMapper {
     int countByExample(UserExample example);
@@ -27,4 +28,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> selectByPage(int page);
 }
