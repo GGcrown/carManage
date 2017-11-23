@@ -1,10 +1,10 @@
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
 %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -13,13 +13,14 @@
     <link rel="stylesheet" href="jsp/css/content_one.css"/>
     <link rel="stylesheet" href="jsp/css/font.css"/>
     <link rel="stylesheet" href="jsp/css/icon.css"/>
-    <link rel="stylesheet" href="jsp/css/content_0.css">
+    <link rel="stylesheet" href="jsp/css/content_2.css">
     <link rel="stylesheet" href="jsp/sweetallert/dist/sweetalert2.css">
     <script type="text/javascript" src="jsp/sweetallert/dist/sweetalert2.min.js"></script>
     <script type="text/javascript" src="jsp/js/jquery-3.2.1.js"></script>
-    <script type="text/javascript" src="jsp/js/content0_one.js"></script>
+    <script type="text/javascript" src="jsp/js/content2_one.js"></script>
     <script type="text/javascript" src="jsp/js/content_base.js"></script>
     <script type="text/javascript" src="/carManage/jsp/My97DatePicker/WdatePicker.js"></script>
+    <!--用户管理页面-->
 
     <%--
     filename: file_name

@@ -2,8 +2,10 @@ package cn.boom.dao;
 
 import cn.boom.pojo.Annualcheck;
 import cn.boom.pojo.AnnualcheckExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 
 public interface AnnualcheckMapper {
     int countByExample(AnnualcheckExample example);
