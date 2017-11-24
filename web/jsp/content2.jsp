@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="jsp/css/font.css"/>
     <link rel="stylesheet" href="jsp/css/icon.css"/>
     <link rel="stylesheet" href="jsp/css/content_2.css">
+    <link rel="stylesheet" href="jsp/css/content_base.css">
     <link rel="stylesheet" href="jsp/sweetallert/dist/sweetalert2.css">
     <script type="text/javascript" src="jsp/sweetallert/dist/sweetalert2.min.js"></script>
     <script type="text/javascript" src="jsp/js/jquery-3.2.1.js"></script>
@@ -47,11 +48,9 @@
         <table class="tblcontent">
             <thead>
             <tr>
-                <th>车牌号</th>
-                <th>车辆品牌</th>
-                <th>核载人数</th>
-                <th>使用人</th>
-                <th>查看</th>
+                <th>用户ID</th>
+                <th>账号</th>
+                <th>权限</th>
                 <th>操作</th>
             </tr>
             </thead>
@@ -70,9 +69,6 @@
             </div>
             <div id="animateContent">
                 <!-- js生成 -->
-                <!-- <div class="textarea"> -->
-                <!-- <label class="lab">aaa123:</label><span class="info">12312312</span> -->
-                <!-- </div> -->
             </div>
         </div>
     </div>
@@ -82,10 +78,10 @@
             <li><a cancel="1"> <</a></li>
             <li id="one"><a default="t">1</a></li>
             <!-- js生成 -->
-            <!-- <li><a>2</a></li> -->
             <li><a cancel="2">></a></li>
         </ul>
     </div>
+    <a>&#xe626;</a>
 </div>
 </body>
 </html>

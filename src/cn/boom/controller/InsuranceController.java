@@ -71,12 +71,13 @@ public class InsuranceController {
 		return insuranceVo;
 	}
 
-	@RequestMapping("deleteInsuranceAjax")
-	public int deleteInsuranceAjax(int insuranceId) {
-		return insuranceService.deleteInsurance(insuranceId);
+	@RequestMapping("/deleteInsuranceAjax")
+	@ResponseBody
+	public int deleteInsuranceAjax(int insureId) {
+		return insuranceService.deleteInsurance(insureId);
 	}
 
-	@RequestMapping("addInsuranceAjax")
+	@RequestMapping("/addInsuranceAjax")
 	public int addInsuranceAjax(@RequestBody Insurance insurance) {
 		insurance.setUserid(1);
 		insurance.setCarid(4);

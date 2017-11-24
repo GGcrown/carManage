@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="jsp/css/font.css" />
 <link rel="stylesheet" href="jsp/css/icon.css" />
 <link rel="stylesheet" href="jsp/css/content_1.css">
+<link rel="stylesheet" href="jsp/css/content_base.css">
 <link rel="stylesheet" href="jsp/sweetallert/dist/sweetalert2.css">
 <script type="text/javascript" src="jsp/sweetallert/dist/sweetalert2.min.js"></script>
 <script type="text/javascript" src="jsp/js/jquery-3.2.1.js"></script>

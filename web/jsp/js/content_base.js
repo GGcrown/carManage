@@ -3,8 +3,8 @@ $(function () {
     // 第一页异步查询显示
     filpPage(0);
     // 默认第一页选择
-    // 初始显示翻页列表
-    listPaging("car/countCarAjax.action");
+    clickpage($(".pages>ul>li>a[default='t']"));
+
 
     // mouse enter change color
     $(".tbody>tr").mouseenter(function () {
@@ -80,7 +80,7 @@ $(function () {
         }
     })
 
-})
+});
 
 // 进入
 function pageenter(page) {
@@ -109,30 +109,37 @@ function clickpage(page) {
 }
 
 // 显示翻页按钮
-function listPaging(urlpath) {
+function listPaging($urlPath, $currentPage) {
+    // console.log($currentPage);
+    var $defaultPage = $(".pages>ul>li>a[index='1']").text();
+    //先删除原来的，防止追加
+    $(".page-append").remove();
     $.ajax({
-        url: urlpath,
-        // url : "car/countCarAjax.action",
+        url: $urlPath,
         contentType: "application/json;charset=utf-8",
         success: function (data) {
             var one = $("#one");
             for (var i = 2; i <= data.pageSum; i++) {
-                var $li = $("<li></li>");
+                var $li = $("<li class='page-append'></li>");
                 var $a = $("<a>" + i + "</a>");
                 $li.append($a);
                 one.after($li);
                 one = $li;
+                //模仿点击
+                if ($currentPage == i) {
+                    clickpage($a);
+                }
                 // 新建节点事件也需要重写
                 $a.mouseenter(function () {
                     if ($(this).attr("index") != 1) {
                         pageenter($(this));
                     }
-                })
+                });
                 $a.mouseout(function () {
                     if ($(this).attr("index") != 1) {
                         pageout($(this));
                     }
-                })
+                });
                 $a.click(function () {
                     if ($(this).attr("cancel") != "1" && $(this).attr("cancel") != "2") {
                         pageout($(".pages>ul>li>a"));
@@ -152,7 +159,6 @@ function listPaging(urlpath) {
                             var a = $(".pages>ul>li:eq(" + liIndex + ")").children();
                             clickpage(a);
                         }
-
                     } else if ($(this).attr("cancel") == "2") { // 向右翻页
                         // 最大下标
                         var maxIndex = $(".pages>ul>li").length - 1;
@@ -167,6 +173,26 @@ function listPaging(urlpath) {
                     }
                 })
             }
+
+            if ($defaultPage > data.pageSum) {
+                clickpage($(".last").prev().children());
+                console.log($(".last").prev().children().text());
+                filpPage($(".last").prev().children().text() - 1);
+                // filpPage($defaultPage - 1);
+            }
         }
-    })
+    });
+    return 100;
 }
+
+function addHoverA($select) {
+    // $(".hovera").hover(function () {
+    $select.hover(function () {
+        //进入
+        $(this).prop("id", "hovera");
+    }, function () {
+        //离开
+        $(this).prop("id", "");
+    });
+}
+

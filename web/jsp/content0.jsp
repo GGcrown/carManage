@@ -14,11 +14,12 @@
     <link rel="stylesheet" href="jsp/css/font.css"/>
     <link rel="stylesheet" href="jsp/css/icon.css"/>
     <link rel="stylesheet" href="jsp/css/content_0.css">
+    <link rel="stylesheet" href="jsp/css/content_base.css">
     <link rel="stylesheet" href="jsp/sweetallert/dist/sweetalert2.css">
     <script type="text/javascript" src="jsp/sweetallert/dist/sweetalert2.min.js"></script>
     <script type="text/javascript" src="jsp/js/jquery-3.2.1.js"></script>
-    <script type="text/javascript" src="jsp/js/content0_one.js"></script>
     <script type="text/javascript" src="jsp/js/content_base.js"></script>
+    <script type="text/javascript" src="jsp/js/content0_one.js"></script>
     <script type="text/javascript" src="/carManage/jsp/My97DatePicker/WdatePicker.js"></script>
 
     <%--
@@ -82,7 +83,7 @@
             <li id="one"><a default="t">1</a></li>
             <!-- js生成 -->
             <!-- <li><a>2</a></li> -->
-            <li><a cancel="2">></a></li>
+            <li class="last"><a cancel="2">></a></li>
         </ul>
     </div>
 </div>

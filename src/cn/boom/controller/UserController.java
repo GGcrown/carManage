@@ -46,7 +46,7 @@ public class UserController {
     public int addUserAjax(@RequestBody User user) {
         //验证用户数据
         if (checkUserData(user)) {
-            int reuslt=userService.addUser(user);
+            int reuslt = userService.addUser(user);
         }
 
 
@@ -57,8 +57,8 @@ public class UserController {
     @ResponseBody
     public int deleteUserAjax(int userid) {
         //验证id
-        if(checkUserId(userid)){
-            int result=userService.deleteUser(userid);
+        if (checkUserId(userid)) {
+            int result = userService.deleteUser(userid);
         }
         return 0;
     }
@@ -69,23 +69,26 @@ public class UserController {
     public int updateUserAjax(@RequestBody User user) {
         //验证用户数据
         if (checkUserData(user)) {
-            int result=userService.updateUser(user);
+            int result = userService.updateUser(user);
         }
         return 0;
     }
 
     @RequestMapping("/findUserListAjax")
-    public List<User> findUserListAjax(int page){
-        List<User> users= userService.findUserList(page);
-        return users;
+    @ResponseBody
+    public UserVo findUserListAjax(int page) {
+        List<User> users = userService.findUserList(page);
+        UserVo userVo=new UserVo();
+        userVo.setUsers(users);
+        return userVo;
     }
 
     @RequestMapping("/findUserByIdAjax")
     @ResponseBody
     public User findUserByIdAjax(int userid) {
         //验证id
-        if(checkUserId(userid)){
-            User user=userService.findUser(userid);
+        if (checkUserId(userid)) {
+            User user = userService.findUser(userid);
         }
         return null;
     }
@@ -93,7 +96,9 @@ public class UserController {
     @RequestMapping("/countUserAjax")
     @ResponseBody
     public UserVo countUserAjax() {
-        int count=userService.countUser();
+        int count = userService.countUser();
+        UserVo userVo=new UserVo();
+        userVo.setPageSum(count);
         return null;
     }
 
