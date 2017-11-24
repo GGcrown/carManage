@@ -38,7 +38,7 @@ $(function () {
 
     // 显示添加汽车
     $("#addCar").click(function () {
-        showAddCar();
+        showAddInfo();
     });
 
     $("#iconfontX").click(function () {
@@ -90,6 +90,7 @@ function pageenter(page) {
         page.css("border-color", "#ddd");
     }
 }
+
 
 // 滑出
 function pageout(page) {

@@ -2,8 +2,7 @@ $(function () {
     // 初始显示翻页列表
     listPaging("car/countCarAjax.action");
 
-
-})
+});
 
 //翻页
 function filpPage(page) {
@@ -156,7 +155,6 @@ function infoDelete($delete) {
                 var cid = $delete.attr("cid");
                 //获得当前页
                 var $currentPage = $(".pages>ul>li>a[index='1']").text();
-                // alert($currentPage.text());
                 $.post("car/ss.action?carId=" + cid,
                     {},
                     function (data) {
@@ -267,7 +265,7 @@ function addInfo($addbtn) {
         $.ajax({
             type: "post",
             url: "car/addCarAjax.action",
-            contentType: "application/json;charset=utf-8",
+            contentType: "application/json;charset=utf·-8",
             data: $data,
             success: function (data) {
                 if (data > 0) {
