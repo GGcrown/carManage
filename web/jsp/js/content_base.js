@@ -12,7 +12,7 @@ $(function () {
         if (index % 2 == 1) {
             $(this).css("background-color", "#F5F5F5");
         }
-    })
+    });
 
     // mouse enter change color
     $(".tbody>tr").mouseout(function () {
@@ -20,21 +20,21 @@ $(function () {
         if (index % 2 == 1) {
             $(this).css("background-color", "#FFFFFF");
         }
-    })
+    });
 
     // 分页鼠标进入
     $(".pages>ul>li>a").mouseenter(function () {
         if ($(this).attr("index") != 1) {
             pageenter($(this));
         }
-    })
+    });
 
     // 分页鼠标离开
     $(".pages>ul>li>a").mouseout(function () {
         if ($(this).attr("index") != 1) {
             pageout($(this));
         }
-    })
+    });
 
     // 显示添加汽车
     $("#addCar").click(function () {
@@ -111,14 +111,13 @@ function clickpage(page) {
 
 // 显示翻页按钮
 function listPaging($urlPath, $currentPage) {
-    // console.log($currentPage);
     var $defaultPage = $(".pages>ul>li>a[index='1']").text();
-    //先删除原来的，防止追加
-    $(".page-append").remove();
     $.ajax({
         url: $urlPath,
         contentType: "application/json;charset=utf-8",
         success: function (data) {
+            //先删除原来的，防止追加
+            $(".page-append").remove();
             var one = $("#one");
             for (var i = 2; i <= data.pageSum; i++) {
                 var $li = $("<li class='page-append'></li>");
@@ -174,10 +173,9 @@ function listPaging($urlPath, $currentPage) {
                     }
                 })
             }
-
+            //如果默认页大于总页数
             if ($defaultPage > data.pageSum) {
                 clickpage($(".last").prev().children());
-                console.log($(".last").prev().children().text());
                 filpPage($(".last").prev().children().text() - 1);
                 // filpPage($defaultPage - 1);
             }

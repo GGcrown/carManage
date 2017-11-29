@@ -1,36 +1,46 @@
+$(function () {
+    // 初始显示翻页列表
+    listPaging("user/countUserAjax.action");
+
+});
+
 //翻页
 function filpPage(page) {
     $.ajax({
         type: "post",
-        url: "car/findCarListAjax.action?page=" + page,
+        url: "user/findUserListAjax.action?page=" + page,
         contentType: "application/json;charset=utf-8",
         success: function (data) {
             $(".tbody").empty("");
-            showCarList(data.cars);
+            showInfoList(data.users);
         }
     })
 }
 
 
-function showCarList(info) {
+function showInfoList(info) {
     for (var i = 0; i < info.length; i++) {
         var tr = $("<tr></tr>");// tr节点对象
         tr.append("<td align='center'>" + info[i].userid + "</td>");
         tr.append("<td align='center'>" + info[i].username + "</td>");
+        if (info[i].usertype == 0) {
+            tr.append("<td align='center'>管理员用户</td>");
+        } else {
+            tr.append("<td align='center'>普通用户</td>");
+        }
 
-        var $td = $("<td align='center'></td>");
-        //详情按钮
-        var $a = $("<a cid='" + info[i].carId + "' class='iconfont hovera' >&#xe600;</a>");
         //修改按钮
-        var $a2 = $("<a cid='" + info[i].carId + "' class='iconfont hovera'>&#xe615;</a>");
+        var $update = $("<a userid='" + info[i].userid + "'class='iconfont hovera'>&#xe615;</a>");
         //删除按钮
-        var $a3 = $("<a cid='" + info[i].carId + "' class='iconfont hovera'>&#xe603;</a>");
-        $td.append($a);
-        tr.append($td);
-
+        var $delete = $("<a userid='" + info[i].userid + "'class='iconfont hovera'>&#xe603;</a>");
+        //重置按钮
+        var $reset = $("<a userid='" + info[i].userid
+            + "'class='iconfont hovera hint' style='color: #ff5555;font-size: 20px'>&#xe629;</a>");
+        //todo
         $td = $("<td align='center'></td>");
-        $td.append($a2);
-        $td.append($a3);
+        $td.append($update);
+        $td.append($delete);
+        $td.append($reset);
         tr.append($td);
 
 
@@ -40,20 +50,18 @@ function showCarList(info) {
             if (index % 2 == 1) {
                 $(this).css("background-color", "#F5F5F5");
             }
-        })
+        });
         tr.mouseout(function () {
             var index = $(this).index();
             if (index % 2 == 1) {
                 $(this).css("background-color", "#FFFFFF");
             }
-        })
+        });
 
-        // 详细信息点击事件
-        infoDeatil($a);
         // 修改信息点击事件
-        infoUpdate($a2);
+        infoUpdate($update);
         //删除信息点击事件
-        infoDelete($a3);
+        infoDelete($delete);
     }
     addHoverA($(".hovera"));
 }
@@ -64,177 +72,31 @@ function cleanIndex(page) {
 }
 
 // 显示
-function showAddCar() {
+function showAddInfo() {
     $("#titleInfo").empty("");// 更改标题
-    $("#titleInfo").append("添加车辆");
+    $("#titleInfo").append("添加用户");
     $("#animateContent").empty("");// 清空再加
 
-    var $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label><input id="sb" class="info" name="carPlate"/></div>');
-    var $carMark = $('<div class="textarea"><label class="lab">车辆品牌:</label><input class="info" name="carMark" /></div>');
-    var $carColor = $('<div class="textarea"><label class="lab">颜色:</label><input class="info" name="carColor"/></div>');
-    var $carMileage = $('<div class="textarea"><label class="lab">车辆总行程:</label><input class="info"name="carMileage"/></div>');
-    var $carAge = $('<div class="textarea"><label class="lab">车龄:</label>' +
-        '<input class="info Wdate" name="carAge" type="text" onClick="WdatePicker()" /></div>');
-    var $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label><input class="info" name="carLimit" /></div>');
+    var $username = $('<div class="textarea"><label class="lab">账号:</label>' +
+        '<input class="info" name="username"/></div>');
+    var $password = $('<div class="textarea"><label class="lab">密码:</label>' +
+        '<input class="info Wdate" name="password" type="password"  /></div>');
+    var $repassword = $('<div class="textarea"><label class="lab">确认密码:</label>' +
+        '<input class="info Wdate" name="repassword" type="password"  /></div>');
+    var $usertype = $('<div class="textarea"><label class="lab">账号类型:</label>' +
+        '<input class="info" name="usertype" type="text"/></div>');
 
-    $("#animateContent").append($carPlate);
-    $("#animateContent").append($carMark);
-    $("#animateContent").append($carColor);
-    $("#animateContent").append($carMileage);
-    $("#animateContent").append($carAge);
-    $("#animateContent").append($carLimit);
+    $("#animateContent").append($username);
+    $("#animateContent").append($password);
+    $("#animateContent").append($repassword);
+    $("#animateContent").append($usertype);
     // 添加按钮
     var $addbtn = $("<a class='addbtn btn'>确认添加</a>");
     $("#animateContent").append($addbtn);
-    $("#animateDIV").slideDown();
-
-    $addbtn.click(function () {
-        var $carPlate = $(".info[name='carPlate']").val();
-        var $carMark = $(".info[name='carMark']").val();
-        var $carColor = $(".info[name='carColor']").val();
-        var $carMileage = $(".info[name='carMileage']").val();
-        var $carAge = $(".info[name='carAge']").val();
-        var $carLimit = $(".info[name='carLimit']").val();
-
-        var $data = '{"carPlate":"' + $carPlate + '","carMark":"' + $carMark + '","carColor":"' + $carColor
-            + '","carMileage":"' + $carMileage + '","carAge":"' + $carAge + '","carLimit":' + $carLimit + '}';
-        $.ajax({
-            type: "post",
-            url: "car/addCarAjax.action",
-            contentType: "application/json;charset=utf-8",
-            data: $data,
-            success: function (data) {
-                // console.log(data);
-                if (data > 0) {
-                    // 刷新列表页面
-                    filpPage($("li>a[index=1]").text() - 1);
-                    $("#animateDIV").hide();
-                    swal("添加车辆成功！", "", "success");
-                } else {
-                    swal("添加车辆失败", "", "error");
-                }
-            }
-        })
-    })
+    $("#animateDIV").slideDown()
+    addInfo($addbtn);
 }
 
-
-function infoDeatil($a) {
-    // 详细信息点击事件
-    $a.click(function () {
-        var $carId = $(this).attr("cid");
-        $.ajax({
-            type: "post",
-            url: "car/findCarByIdAjax.action",
-            data: "carId=" + $carId,
-            success: function (data) {
-
-                $("#titleInfo").empty("");// 更改标题
-                $("#titleInfo").append("详细信息");
-                $("#animateContent").empty("");// 清空再加
-                $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label><span class="info">'
-                    + data.carPlate + '</span></div>');
-                $carMark = $('<div class="textarea"><label class="lab">车辆品牌:</label><span class="info">'
-                    + data.carMark + '</span></div>');
-                $carColor = $('<div class="textarea"><label class="lab">颜色:</label><span class="info">'
-                    + data.carColor + '</span></div>');
-                $carMileage = $('<div class="textarea"><label class="lab">车辆总行程:</label><span class="info">'
-                    + data.carMileage + '</span></div>');
-                $carAge = $('<div class="textarea"><label class="lab">车龄:</label><span class="info">'
-                    + data.carAge + '</span></div>');
-                $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label><span class="info">'
-                    + data.carLimit + '</span></div>');
-
-                $("#animateContent").append($carPlate);
-                $("#animateContent").append($carMark);
-                $("#animateContent").append($carColor);
-                $("#animateContent").append($carMileage);
-                $("#animateContent").append($carAge);
-                $("#animateContent").append($carLimit);
-                $("#animateDIV").slideDown();
-            }
-        });
-    })
-}
-
-function infoUpdate($update) {
-    // 修改信息点击事件
-    $update.click(function () {
-        var $carId = $(this).attr("cid");
-        $.ajax({
-            type: "post",
-            url: "car/findCarByIdAjax.action",
-            data: "carId=" + $carId,
-            success: function (data) {
-                // console.log(data);
-                $("#titleInfo").empty("");// 更改标题
-                $("#titleInfo").append("更新车辆信息");
-                $("#animateContent").empty("");// 清空再加
-
-                var $id = $('<input name="carId" style="display:none" value="' + $carId + '" />');
-                var $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label>' +
-                    '<input id="sb" class="info" name="carPlate" value="' + data.carPlate + '"/></div>');
-                var $carMark = $('<div class="textarea"><label class="lab">车辆品牌:</label>' +
-                    '<input class="info" name="carMark" value="' + data.carMark + '"/></div>');
-                var $carColor = $('<div class="textarea"><label class="lab">颜色:</label>' +
-                    '<input class="info" name="carColor"value="' + data.carColor + '"/></div>');
-                var $carMileage = $('<div class="textarea"><label class="lab">车辆总行程:</label>' +
-                    '<input class="info"name="carMileage" value="' + data.carMileage + '"/></div>');
-                var $carAge = $('<div class="textarea"><label class="lab">车龄:</label>' +
-                    '<input class="info Wdate" name="carAge" type="text" value="'
-                    + data.carAge + '" onClick="WdatePicker()" /></div>');
-                var $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label>' +
-                    '<input class="info" name="carLimit" value="' + data.carLimit + '"/></div>');
-
-                $("#animateContent").append($id);
-                $("#animateContent").append($carPlate);
-                $("#animateContent").append($carMark);
-                $("#animateContent").append($carColor);
-                $("#animateContent").append($carMileage);
-                $("#animateContent").append($carAge);
-                $("#animateContent").append($carLimit);
-                // 添加修改按钮
-                var $update = $("<a class='update'>确认修改</a>");
-                $("#animateContent").append($update);
-                $("#animateDIV").slideDown();
-
-                // 添加修改按钮事件
-                $update.click(function () {
-                    // console.log($(".info[name='carPlate']").val())
-                    var $carId = $("input[name='carId']").val();
-                    var $carPlate = $(".info[name='carPlate']").val();
-                    var $carMark = $(".info[name='carMark']").val();
-                    var $carColor = $(".info[name='carColor']").val();
-                    var $carMileage = $(".info[name='carMileage']").val();
-                    var $carAge = $(".info[name='carAge']").val();
-                    var $carLimit = $(".info[name='carLimit']").val();
-
-                    var $data = '{"carId":"' + $carId + '","carPlate":"' + $carPlate + '","carMark":"' + $carMark
-                        + '","carColor":"' + $carColor + '","carMileage":"' + $carMileage + '","carAge":"' + $carAge
-                        + '","carLimit":' + $carLimit + '}';
-                    $.ajax({
-                        type: "post",
-                        url: "car/updateCarAjax.action",
-                        contentType: "application/json;charset=utf-8",
-                        data: $data,
-                        success: function (data) {
-                            console.log(data);
-                            if (data > 0) {
-                                // 刷新列表页面
-                                filpPage($("li>a[index=1]").text() - 1);
-                                $("#animateDIV").hide();
-                            } else {
-                                swal("更新失败");
-                            }
-                            swal("更新成功！");
-                        }
-                    })
-
-                })
-            }
-        });
-    })
-}
 
 function infoDelete($delete) {
     //删除信息点击事件
@@ -249,16 +111,109 @@ function infoDelete($delete) {
             closeOnConfirm: false
         }).then(function (isConfirm) {
             if (isConfirm == true) {
-                var cid = $delete.attr("cid");
-                $.post("car/ss.action?carId=" + cid, {}, function (data) {
-                    if (data > 0) {
-                        swal("删除成功！", "", "success");
-                        filpPage($("li>a[index=1]").text() - 1);
-                        $("#animateDIV").slideUp();
-                    } else {
-                        swal("删除失败！", "", "error");
+                //获得当前页
+                var $currentPage = $(".pages>ul>li>a[index='1']").text();
+                var userid = $delete.attr("userid");
+                $.post("user/deleteUserByIdAjax.action",
+                    {userid: userid},
+                    function (data) {
+                        if (data > 0) {
+                            swal("删除成功！", "", "success");
+                            //自动刷新翻页
+                            filpPage($("li>a[index=1]").text() - 1);
+                            listPaging("user/countUserAjax.action", $currentPage);
+                            $("#animateDIV").slideUp();
+                        } else {
+                            swal("删除失败！", "", "error");
+                        }
                     }
+                )
+            }
+        })
+    })
+}
+
+
+function infoUpdate($update) {
+    // 修改信息点击事件
+    $update.click(function () {
+        var $userid = $(this).attr("userid");
+        $.ajax({
+            type: "post",
+            url: "user/findUserByIdAjax.action",
+            data: "userid=" + $userid,
+            success: function (data) {
+                $user = data.user;
+                $("#titleInfo").empty("");// 更改标题
+                $("#titleInfo").append("更新车辆信息");
+                $("#animateContent").empty("");// 清空再加
+
+                var $username = $('<div class="textarea"><label class="lab">账号:</label><span class="info">'
+                    + ' <input name="username" value="' + $user.username + '"/></span></div>');
+                var $usertype = $('<div class="textarea"><label class="lab">账号类型:</label><span class="info"> '
+                    + '<input name="usertype" value="' + $user.usertype + '"/></span></div>');
+                $("#animateContent").append($username);
+                $("#animateContent").append($usertype);
+
+                // 添加修改按钮
+                var $updateBtn = $("<a class='update'>确认修改</a>");
+                $("#animateContent").append($updateBtn);
+                $("#animateDIV").slideDown();
+
+                // 添加修改按钮事件
+                $updateBtn.click(function () {
+                    var $username = $("input[name='username']").val();
+                    var $usertype = $("input[name='usertype']").val();
+
+                    var $data = '{"username":"' + $username + '","usertype":"' + $usertype + '"}';
+                    $.ajax({
+                        type: "post",
+                        url: "user/updateUserAjax.action",
+                        contentType: "application/json;charset=utf-8",
+                        data: $data,
+                        success: function (data) {
+                            if (data > 0) {
+                                // 刷新列表页面
+                                filpPage($("li>a[index=1]").text() - 1);
+                                $("#animateDIV").hide();
+                                swal("更新", "更新成功", "success");
+                            } else {
+                                swal("更新失败", "出错了！", "error");
+                            }
+                        }
+                    })
                 })
+            }
+        });
+    })
+}
+
+
+function addInfo($addbtn) {
+    $addbtn.click(function () {
+        var $username = $(".info[name='username']").val();
+        var $password = $(".info[name='password']").val();
+        var $usertype = $(".info[name='usertype']").val();
+
+
+        var $data = '{"username":"' + $username + '","password":"' + $password + '","usertype":' + $usertype + '}';
+        //获得当前页
+        var $currentPage = $(".pages>ul>li>a[index='1']").text();
+        $.ajax({
+            type: "post",
+            url: "user/addUserAjax.action",
+            contentType: "application/json;charset=utf-8",
+            data: $data,
+            success: function (data) {
+                if (data > 0) {
+                    // 刷新列表页面
+                    listPaging("user/countUserAjax.action", $currentPage);
+                    filpPage($("li>a[index=1]").text() - 1);
+                    $("#animateDIV").hide();
+                    swal("添加用户成功！");
+                } else {
+                    swal("添加用户失败");
+                }
             }
         })
     })

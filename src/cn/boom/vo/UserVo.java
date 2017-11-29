@@ -9,6 +9,16 @@ public class UserVo {
     private List<User> users;
     //分页数量
     private int pageSum;
+    //用户
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public List<User> getUsers() {
         return users;

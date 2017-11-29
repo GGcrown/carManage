@@ -110,4 +110,21 @@ public class User {
     public void setReserve7(String reserve7) {
         this.reserve7 = reserve7 == null ? null : reserve7.trim();
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userid=" + userid +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", usertype=" + usertype +
+                ", reserve1='" + reserve1 + '\'' +
+                ", reserve2='" + reserve2 + '\'' +
+                ", reserve3='" + reserve3 + '\'' +
+                ", reserve4='" + reserve4 + '\'' +
+                ", reserve5='" + reserve5 + '\'' +
+                ", reserve6='" + reserve6 + '\'' +
+                ", reserve7='" + reserve7 + '\'' +
+                '}';
+    }
 }

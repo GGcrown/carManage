@@ -21,7 +21,7 @@ import java.util.List;
 /**
  * @author crown
  * @ClassName UserController
- * @Description TODO
+ * @Description 用户控制层
  * @email 1084961504@qq.com
  * @date Oct 23, 2017 1:48:43 PM
  */
@@ -46,10 +46,9 @@ public class UserController {
     public int addUserAjax(@RequestBody User user) {
         //验证用户数据
         if (checkUserData(user)) {
-            int reuslt = userService.addUser(user);
+            int result = userService.addUser(user);
+            return result;
         }
-
-
         return 0;
     }
 
@@ -59,6 +58,7 @@ public class UserController {
         //验证id
         if (checkUserId(userid)) {
             int result = userService.deleteUser(userid);
+            return result;
         }
         return 0;
     }
@@ -70,6 +70,7 @@ public class UserController {
         //验证用户数据
         if (checkUserData(user)) {
             int result = userService.updateUser(user);
+            return result;
         }
         return 0;
     }
@@ -78,17 +79,20 @@ public class UserController {
     @ResponseBody
     public UserVo findUserListAjax(int page) {
         List<User> users = userService.findUserList(page);
-        UserVo userVo=new UserVo();
+        UserVo userVo = new UserVo();
         userVo.setUsers(users);
         return userVo;
     }
 
     @RequestMapping("/findUserByIdAjax")
     @ResponseBody
-    public User findUserByIdAjax(int userid) {
+    public UserVo findUserByIdAjax(int userid) {
         //验证id
         if (checkUserId(userid)) {
             User user = userService.findUser(userid);
+            UserVo userVo = new UserVo();
+            userVo.setUser(user);
+            return userVo;
         }
         return null;
     }
@@ -97,9 +101,9 @@ public class UserController {
     @ResponseBody
     public UserVo countUserAjax() {
         int count = userService.countUser();
-        UserVo userVo=new UserVo();
+        UserVo userVo = new UserVo();
         userVo.setPageSum(count);
-        return null;
+        return userVo;
     }
 
 
@@ -111,13 +115,12 @@ public class UserController {
      */
     public boolean checkUserData(User user) {
         //判断是否为空
-        if (user == null || user.getUserid() == null || user.getUsername() == null || user.getPassword() == null
+        if (user == null || user.getUsername() == null || user.getPassword() == null
                 || user.getUsertype() == null) {
             return false;
         }
         //判断是否为空字符串
-        return !"".equals(user.getUserid()) && !"".equals(user.getUsername()) && !"".equals(user.getPassword())
-                && !"".equals(user.getUsertype());
+        return !"".equals(user.getUsername()) && !"".equals(user.getPassword()) && !"".equals(user.getUsertype());
     }
 
     /**

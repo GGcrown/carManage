@@ -18,8 +18,8 @@
     <link rel="stylesheet" href="jsp/sweetallert/dist/sweetalert2.css">
     <script type="text/javascript" src="jsp/sweetallert/dist/sweetalert2.min.js"></script>
     <script type="text/javascript" src="jsp/js/jquery-3.2.1.js"></script>
-    <script type="text/javascript" src="jsp/js/content_base.js"></script>
     <script type="text/javascript" src="jsp/js/content0_one.js"></script>
+    <script type="text/javascript" src="jsp/js/content_base.js"></script>
     <script type="text/javascript" src="/carManage/jsp/My97DatePicker/WdatePicker.js"></script>
 
     <%--
@@ -70,9 +70,6 @@
             </div>
             <div id="animateContent">
                 <!-- js生成 -->
-                <!-- <div class="textarea"> -->
-                <!-- <label class="lab">aaa123:</label><span class="info">12312312</span> -->
-                <!-- </div> -->
             </div>
         </div>
     </div>

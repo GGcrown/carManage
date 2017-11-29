@@ -1,11 +1,10 @@
-
 @font-face {
 	font-family: 'iconfont';  /* project id 441720 */
-	src: url('//at.alicdn.com/t/font_441720_5iapi41dpb1vpldi.eot');
-	src: url('//at.alicdn.com/t/font_441720_5iapi41dpb1vpldi.eot?#iefix') format('embedded-opentype'),
-	url('//at.alicdn.com/t/font_441720_5iapi41dpb1vpldi.woff') format('woff'),
-	url('//at.alicdn.com/t/font_441720_5iapi41dpb1vpldi.ttf') format('truetype'),
-	url('//at.alicdn.com/t/font_441720_5iapi41dpb1vpldi.svg#iconfont') format('svg');
+	src: url('//at.alicdn.com/t/font_441720_l440ke5k4u545cdi.eot');
+	src: url('//at.alicdn.com/t/font_441720_l440ke5k4u545cdi.eot?#iefix') format('embedded-opentype'),
+	url('//at.alicdn.com/t/font_441720_l440ke5k4u545cdi.woff') format('woff'),
+	url('//at.alicdn.com/t/font_441720_l440ke5k4u545cdi.ttf') format('truetype'),
+	url('//at.alicdn.com/t/font_441720_l440ke5k4u545cdi.svg#iconfont') format('svg');
 }
 
 .iconfont {

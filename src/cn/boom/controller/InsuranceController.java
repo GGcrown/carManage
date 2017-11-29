@@ -77,6 +77,13 @@ public class InsuranceController {
         return insuranceService.deleteInsurance(insureId);
     }
 
+    @RequestMapping("/updateInsuranceAjax")
+    @ResponseBody
+    public int updateInsuranceAjax(@RequestBody Insurance insurance){
+        return insuranceService.updateInsurance(insurance);
+    }
+
+
     @RequestMapping("/addInsuranceAjax")
     @ResponseBody
     public int addInsuranceAjax(@RequestBody Insurance insurance) {

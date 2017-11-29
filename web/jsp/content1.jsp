@@ -83,7 +83,7 @@
             <li id="one"><a default="t">1</a></li>
             <!-- js生成 -->
             <!-- <li><a>2</a></li> -->
-            <li><a cancel="2">></a></li>
+            <li class="last"><a cancel="2">></a></li>
         </ul>
     </div>
 </div>

@@ -72,7 +72,7 @@ function cleanIndex(page) {
 }
 
 // 显示
-function showAddCar() {
+function showAdd() {
     $("#titleInfo").empty("");// 更改标题
     $("#titleInfo").append("添加车辆");
     $("#animateContent").empty("");// 清空再加

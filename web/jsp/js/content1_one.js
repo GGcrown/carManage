@@ -261,6 +261,8 @@ function addInfo($addbtn) {
         var $data = '{"insureTypeofinsurance":"' + $insureTypeofinsurance + '","insuranceStarttime":"' + $insuranceStarttime
             + '","insuranceEndtime":"' + $insuranceEndtime + '","carMileage":"' + $carMileage + '","insureCompany":"' + $insureCompany
             + '","deptname":' + $deptname + '}';
+        //获得当前页
+        var $currentPage = $(".pages>ul>li>a[index='1']").text();
         $.ajax({
             type: "post",
             url: "insurance/addInsuranceAjax.action",
@@ -268,9 +270,8 @@ function addInfo($addbtn) {
             data: $data,
             success: function (data) {
                 if (data > 0) {
-                    console.log(data);
                     // 刷新列表页面
-                    listPaging("insurance/countInsuranceAjax.action");
+                    listPaging("insurance/countInsuranceAjax.action",$currentPage);
                     filpPage($("li>a[index=1]").text() - 1);
                     $("#animateDIV").hide();
                     swal("添加车辆保险成功！");

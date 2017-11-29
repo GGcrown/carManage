@@ -42,7 +42,7 @@
 <hr style="height: 1px; border: none; border-top: 1px dotted #e2e2e2; width: 92%;"/>
 <div class="divcontent">
     <div class="manage">
-        <a class="btn query" id="addCar">添加车辆</a>
+        <a class="btn query" id="addCar">添加用户</a>
     </div>
     <div class="divtbl">
         <table class="tblcontent">
@@ -78,10 +78,9 @@
             <li><a cancel="1"> <</a></li>
             <li id="one"><a default="t">1</a></li>
             <!-- js生成 -->
-            <li><a cancel="2">></a></li>
+            <li class="last"><a cancel="2">></a></li>
         </ul>
     </div>
-    <a>&#xe626;</a>
 </div>
 </body>
 </html>
