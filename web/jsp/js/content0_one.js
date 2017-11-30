@@ -12,13 +12,13 @@ function filpPage(page) {
         contentType: "application/json;charset=utf-8",
         success: function (data) {
             $(".tbody").empty("");
-            showCarList(data.cars);
+            showInfoList(data.cars);
         }
     })
 }
 
 
-function showCarList(info) {
+function showInfoList(info) {
     for (var i = 0; i < info.length; i++) {
         var tr = $("<tr></tr>");// tr节点对象
         tr.append("<td align='center'>" + info[i].carPlate + "</td>");
@@ -28,17 +28,17 @@ function showCarList(info) {
 
         var $td = $("<td align='center'></td>");
         //详情按钮
-        var $a = $("<a cid='" + info[i].carId + "' class='iconfont hovera' >&#xe600;</a>");
+        var $detail = $("<a cid='" + info[i].carId + "' title='查看详情' class='iconfont hovera' >&#xe600;</a>");
         //修改按钮
-        var $a2 = $("<a cid='" + info[i].carId + "' class='iconfont hovera'>&#xe615;</a>");
+        var $update = $("<a cid='" + info[i].carId + "' title='修改' class='iconfont hovera'>&#xe615;</a>");
         //删除按钮
-        var $a3 = $("<a cid='" + info[i].carId + "' class='iconfont hovera'>&#xe603;</a>");
-        $td.append($a);
+        var $delete = $("<a cid='" + info[i].carId + "' title='删除' class='iconfont hovera'>&#xe603;</a>");
+        $td.append($detail);
         tr.append($td);
 
         $td = $("<td align='center'></td>");
-        $td.append($a2);
-        $td.append($a3);
+        $td.append($update);
+        $td.append($delete);
         tr.append($td);
 
 
@@ -57,11 +57,11 @@ function showCarList(info) {
         });
 
         // 详细信息点击事件
-        infoDeatil($a);
+        infoDeatil($detail);
         // 修改信息点击事件
-        infoUpdate($a2);
+        infoUpdate($update);
         //删除信息点击事件
-        infoDelete($a3);
+        infoDelete($delete);
     }
     addHoverA($(".hovera"));
 }

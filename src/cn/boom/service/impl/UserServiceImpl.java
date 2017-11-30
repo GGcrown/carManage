@@ -49,10 +49,16 @@ public class UserServiceImpl implements UserService {
      * 添加用户
      *
      * @param user
-     * @return
+     * @return -1此用户名已存在 0添加失败 1添加成功
      */
     @Override
     public int addUser(User user) {
+//        System.out.println(user);
+        User find = userMapper.selectByUsername(user.getUsername());
+        if (find != null) {
+            return -1;
+        }
+        //todo
         return userMapper.insertSelective(user);
     }
 
@@ -65,9 +71,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int deleteUser(int userid) {
 //        return userMapper.deleteByPrimaryKey(userid);
-//        return userMapper.update
-        //todo
-        return 0;
+        User user = new User();
+        user.setUserid(userid);
+        user.setUsertype(3);//设置3为已经删除用户
+        return userMapper.updateByPrimaryKeySelective(user);
     }
 
     /**
@@ -108,9 +115,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findUserList(int page) {
-//        List<Car> cars = carMapper.selectByPage(page * Page.CARPAGE);
-
-        return userMapper.selectByPage(page);
+        return userMapper.selectByPage(page * Page.USERPAGE);
     }
 
 }

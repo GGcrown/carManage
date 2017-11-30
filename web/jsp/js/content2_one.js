@@ -30,12 +30,12 @@ function showInfoList(info) {
         }
 
         //修改按钮
-        var $update = $("<a userid='" + info[i].userid + "'class='iconfont hovera'>&#xe615;</a>");
+        var $update = $("<a userid='" + info[i].userid + "' title='添加用户' class='iconfont hovera'>&#xe615;</a>");
         //删除按钮
-        var $delete = $("<a userid='" + info[i].userid + "'class='iconfont hovera'>&#xe603;</a>");
+        var $delete = $("<a userid='" + info[i].userid + "' title='删除用户' class='iconfont hovera'>&#xe603;</a>");
         //重置按钮
-        var $reset = $("<a userid='" + info[i].userid
-            + "'class='iconfont hovera hint' style='color: #ff5555;font-size: 20px'>&#xe629;</a>");
+        var $reset = $("<a userid=' " + info[i].userid
+            + "' title='重置用户密码' class='iconfont hovera hint' style='color: #ff5555;font-size: 20px'>&#xe629;</a>");
         //todo
         $td = $("<td align='center'></td>");
         $td.append($update);
@@ -83,8 +83,13 @@ function showAddInfo() {
         '<input class="info Wdate" name="password" type="password"  /></div>');
     var $repassword = $('<div class="textarea"><label class="lab">确认密码:</label>' +
         '<input class="info Wdate" name="repassword" type="password"  /></div>');
-    var $usertype = $('<div class="textarea"><label class="lab">账号类型:</label>' +
-        '<input class="info" name="usertype" type="text"/></div>');
+
+    var $usertype = $('<div class="textarea"><label class="lab">用户类型:</label>' +
+        '<select name="usertype" class="selectOption info"><option value="1">普通用户</option>' +
+        '<option value="0">管理员用户</option></select></div>');
+
+    // var $usertype = $('<div class="textarea"><label class="lab">账号类型:</label>' +
+    //     '<input class="info" name="usertype" type="text"/></div>');
 
     $("#animateContent").append($username);
     $("#animateContent").append($password);
@@ -148,10 +153,14 @@ function infoUpdate($update) {
                 $("#titleInfo").append("更新车辆信息");
                 $("#animateContent").empty("");// 清空再加
 
+
                 var $username = $('<div class="textarea"><label class="lab">账号:</label><span class="info">'
                     + ' <input name="username" value="' + $user.username + '"/></span></div>');
-                var $usertype = $('<div class="textarea"><label class="lab">账号类型:</label><span class="info"> '
-                    + '<input name="usertype" value="' + $user.usertype + '"/></span></div>');
+                var $usertype = $('<div class="textarea"><label class="lab">用户类型:</label>' +
+                    '<select name="usertype" class="selectOption info"><option value="1">普通用户</option>' +
+                    '<option value="0">管理员用户</option></select></div>');
+                // var $usertype = $('<div class="textarea"><label class="lab">账号类型:</label><span class="info"> '
+                //     + '<input name="usertype" value="' + $user.usertype + '"/></span></div>');
                 $("#animateContent").append($username);
                 $("#animateContent").append($usertype);
 
@@ -163,9 +172,9 @@ function infoUpdate($update) {
                 // 添加修改按钮事件
                 $updateBtn.click(function () {
                     var $username = $("input[name='username']").val();
-                    var $usertype = $("input[name='usertype']").val();
+                    var $usertype = $("select[name='usertype']").val();
 
-                    var $data = '{"username":"' + $username + '","usertype":"' + $usertype + '"}';
+                    var $data = '{"userid":"' + $userid + '","username":"' + $username + '","usertype":"' + $usertype + '"}';
                     $.ajax({
                         type: "post",
                         url: "user/updateUserAjax.action",
@@ -211,6 +220,8 @@ function addInfo($addbtn) {
                     filpPage($("li>a[index=1]").text() - 1);
                     $("#animateDIV").hide();
                     swal("添加用户成功！");
+                } else if (data == -1) {
+                    swal("此账户已存在，请重新输入！");
                 } else {
                     swal("添加用户失败");
                 }

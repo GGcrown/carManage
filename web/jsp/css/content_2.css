@@ -1,4 +1,13 @@
-.hint{
+.hint {
     color: #ff5555;
 
+}
+
+.selectOption {
+    border: 1px solid #d5d5d5;
+    color: #000;
+    height: 30px;
+    padding: 3px 4px;
+    margin-left: 10px;
+    width:170px;
 }

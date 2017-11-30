@@ -45,6 +45,7 @@ public class UserController {
     @ResponseBody
     public int addUserAjax(@RequestBody User user) {
         //验证用户数据
+        System.out.println(user);
         if (checkUserData(user)) {
             int result = userService.addUser(user);
             return result;
@@ -68,7 +69,7 @@ public class UserController {
     @ResponseBody
     public int updateUserAjax(@RequestBody User user) {
         //验证用户数据
-        if (checkUserData(user)) {
+        if (checkUserId(user.getUserid())) {
             int result = userService.updateUser(user);
             return result;
         }

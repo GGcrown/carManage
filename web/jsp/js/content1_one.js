@@ -29,17 +29,17 @@ function showInfoList(info) {
 
         var $td = $("<td align='center'></td>");
         //详情按钮
-        var $a = $("<a insureId='" + info[i].insureId + "' class='iconfont hovera'>&#xe600;</a>");
+        var $detail = $("<a insureId='" + info[i].insureId + "' title='查看详情' class='iconfont hovera'>&#xe600;</a>");
         //修改按钮
-        var $a2 = $("<a insureId=' " + info[i].insureId + "'class='iconfont hovera'>&#xe615;</a>");
+        var $update = $("<a insureId=' " + info[i].insureId + "' title='修改' class='iconfont hovera'>&#xe615;</a>");
         //删除按钮
-        var $a3 = $("<a insureId='" + info[i].insureId + "' class='iconfont hovera'    >&#xe603;</a>");
-        $td.append($a);
+        var $delete = $("<a insureId='" + info[i].insureId + "' title='删除' class='iconfont hovera' >&#xe603;</a>");
+        $td.append($detail);
         tr.append($td);
 
         $td = $("<td align='center'></td>");
-        $td.append($a2);
-        $td.append($a3);
+        $td.append($update);
+        $td.append($delete);
         tr.append($td);
 
 
@@ -58,11 +58,11 @@ function showInfoList(info) {
         });
 
         // 详细信息点击事件
-        infoDeatil($a);
+        infoDeatil($detail);
         // 修改信息点击事件
-        infoUpdate($a2);
+        infoUpdate($update);
         //删除信息点击事件
-        infoDelete($a3);
+        infoDelete($delete);
     }
     addHoverA($(".hovera"));
 }
@@ -271,7 +271,7 @@ function addInfo($addbtn) {
             success: function (data) {
                 if (data > 0) {
                     // 刷新列表页面
-                    listPaging("insurance/countInsuranceAjax.action",$currentPage);
+                    listPaging("insurance/countInsuranceAjax.action", $currentPage);
                     filpPage($("li>a[index=1]").text() - 1);
                     $("#animateDIV").hide();
                     swal("添加车辆保险成功！");
