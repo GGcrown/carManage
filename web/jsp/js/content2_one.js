@@ -159,8 +159,6 @@ function infoUpdate($update) {
                 var $usertype = $('<div class="textarea"><label class="lab">用户类型:</label>' +
                     '<select name="usertype" class="selectOption info"><option value="1">普通用户</option>' +
                     '<option value="0">管理员用户</option></select></div>');
-                // var $usertype = $('<div class="textarea"><label class="lab">账号类型:</label><span class="info"> '
-                //     + '<input name="usertype" value="' + $user.usertype + '"/></span></div>');
                 $("#animateContent").append($username);
                 $("#animateContent").append($usertype);
 

@@ -11,7 +11,7 @@
         <result column="reserve3" property="reserve3" jdbcType="VARCHAR"/>
         <result column="reserve4" property="reserve4" jdbcType="VARCHAR"/>
         <result column="reserve5" property="reserve5" jdbcType="VARCHAR"/>
-            <result column="reserve6" property="reserve6" jdbcType="VARCHAR"/>
+        <result column="reserve6" property="reserve6" jdbcType="VARCHAR"/>
         <result column="reserve7" property="reserve7" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Example_Where_Clause">
@@ -308,7 +308,10 @@
 
     <!--oneself write-->
     <select id="selectByPage" parameterType="int" resultMap="BaseResultMap">
-        SELECT * FROM USER LIMIT #{0} ,5
+        SELECT * FROM USER WHERE USERTYPE != 3 LIMIT #{0} ,5
     </select>
 
+    <select id="selectByUsername" parameterType="String" resultType="cn.boom.pojo.User">
+        SELECT * FROM USER WHERE USERNAME = #{0}
+    </select>
 </mapper>

@@ -1,4 +1,4 @@
-/**  
+/**
  * @Title CarServiceImpl.java
  * @Package cn.boom.service.impl
  * @Description TODO
@@ -7,16 +7,15 @@
  */
 package cn.boom.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import cn.boom.dao.CarMapper;
 import cn.boom.pojo.Car;
 import cn.boom.pojo.CarExample;
 import cn.boom.service.CarService;
 import cn.boom.util.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @ClassName CarServiceImpl
@@ -28,67 +27,73 @@ import cn.boom.util.Page;
 @Service
 public class CarServiceImpl implements CarService {
 
-	@Autowired
-	private CarMapper carMapper;
+    @Autowired
+    private CarMapper carMapper;
 
-	@Override
-	public List<Car> findCarList(int page) {
-		List<Car> cars = carMapper.selectByPage(page * Page.CARPAGE);
-		return cars;
-	}
+    @Override
+    public List<Car> findCarList(int page) {
+        List<Car> cars = carMapper.selectByPage(page * Page.CARPAGE);
+        return cars;
+    }
 
-	/**
-	 * @Description TODO
-	 * @return
-	 */
-	@Override
-	public int findCountCar() {
-		CarExample example = new CarExample();
-		// example
-		int countCar = carMapper.countByExample(example);
-		int page = countCar % Page.CARPAGE == 0 ? countCar / Page.CARPAGE : countCar / Page.CARPAGE + 1;
-		return page;
-	}
+    /**
+     * @Description TODO
+     * @return
+     */
+    @Override
+    public int findCountCar() {
+        CarExample example = new CarExample();
+        // example
+        int countCar = carMapper.countByExample(example);
+        int page = countCar % Page.CARPAGE == 0 ? countCar / Page.CARPAGE : countCar / Page.CARPAGE + 1;
+        return page;
+    }
 
-	/**
-	 * @Description view car detail
-	 * @param carId
-	 * @return
-	 */
+    /**
+     * @Description view car detail
+     * @param carId
+     * @return
+     */
 	@Override
 	public Car findCarById(int carId) {
 		return carMapper.selectByPrimaryKey(carId);
 	}
 
-	/**
-	 * @Description TODO
-	 * @param car
-	 * @return
-	 */
-	@Override
-	public int updateCar(Car car) {
-		// return carMapper.updateByPrimaryKey(car);
-		return carMapper.updateByPrimaryKeySelective(car);
+    /**
+     * @Description TODO
+     * @param car
+     * @return
+     */
+    @Override
+    public int updateCar(Car car) {
+        // return carMapper.updateByPrimaryKey(car);
+        return carMapper.updateByPrimaryKeySelective(car);
 
-	}
+    }
 
-	/**
-	 * @Description TODO
-	 * @return
-	 */
-	@Override
-	public int addCar(Car car) {
-		return carMapper.insertSelective(car);
-	}
+    /**
+     * @Description TODO
+     * @return
+     */
+    @Override
+    public int addCar(Car car) {
+        return carMapper.insertSelective(car);
+    }
 
-	/**
-	 * @Description TODO
-	 * @param carId
-	 * @return
-	 */
-	@Override
-	public int deleteCar(int carId) {
-		return carMapper.deleteByPrimaryKey(carId);
-	}
+    /**
+     * @Description TODO
+     * @param carId
+     * @return
+     */
+    @Override
+    public int deleteCar(int carId) {
+        return carMapper.deleteByPrimaryKey(carId);
+    }
+
+    @Override
+    public List<Car> listCar() {
+        CarExample carExample=new CarExample();
+        return carMapper.selectByExample(carExample);
+    }
 
 }

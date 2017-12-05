@@ -78,23 +78,40 @@ function showAddInfo() {
     $("#titleInfo").append("添加车辆保险");
     $("#animateContent").empty("");// 清空再加
 
-    var $insureTypeofinsurance = $('<div class="textarea"><label class="lab">保险类型:</label><input id="sb" class="info" name="insureTypeofinsurance"/></div>');
-    var $insuranceStarttime = $('<div class="textarea"><label class="lab">保险开始时间:</label><input class="info Wdate" name="insuranceStarttime" onClick="WdatePicker()" /></div>');
-    var $insuranceEndtime = $('<div class="textarea"><label class="lab">保险失效时间:</label><input class="info Wdate" name="insuranceEndtime" onClick="WdatePicker()" /></div>');
-    var $insureCompany = $('<div class="textarea"><label class="lab">车辆单位:</label><input class="info" name="insureCompany" type="text"/></div>');
-    var $deptname = $('<div class="textarea"><label class="lab">保险公司:</label><input class="info" name="deptname" /></div>');
+    $.ajax({
+        type: "post",
+        url: "car/findAllCarPlateAjax.action",
+        success: function (data) {
+            var $plate = $('<select name="carId" class="selectOption info"></select>');
+            //显示车牌号
+            for (var i = 0; i < data.length; i++) {
+                $plate.append($("<option value='" + data[i].carId + "'>" + data[i].carPlate + "</option>"));
+            }
 
-    $("#animateContent").append($insureTypeofinsurance);
-    $("#animateContent").append($insuranceStarttime);
-    $("#animateContent").append($insuranceEndtime);
-    $("#animateContent").append($insureCompany);
-    $("#animateContent").append($deptname);
-    // 添加按钮
-    var $addbtn = $("<a class='addbtn btn'>确认添加</a>");
-    $("#animateContent").append($addbtn);
-    $("#animateDIV").slideDown();
+            var $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label></div>');
+            var $insureTypeofinsurance = $('<div class="textarea"><label class="lab">保险类型:</label><input class="info" name="insureTypeofinsurance"/></div>');
+            var $insuranceStarttime = $('<div class="textarea"><label class="lab">保险开始时间:</label><input class="info Wdate" name="insuranceStarttime" onClick="WdatePicker()" /></div>');
+            var $insuranceEndtime = $('<div class="textarea"><label class="lab">保险失效时间:</label><input class="info Wdate" name="insuranceEndtime" onClick="WdatePicker()" /></div>');
+            var $insureCompany = $('<div class="textarea"><label class="lab">车辆单位:</label><input class="info" name="insureCompany" type="text"/></div>');
+            var $deptname = $('<div class="textarea"><label class="lab">保险公司:</label><input class="info" name="deptname" /></div>');
+            $carPlate.append($plate);
 
-    addInfo($addbtn);
+            $("#animateContent").append($carPlate);
+            $("#animateContent").append($insureTypeofinsurance);
+            $("#animateContent").append($insuranceStarttime);
+            $("#animateContent").append($insuranceEndtime);
+            $("#animateContent").append($insureCompany);
+            $("#animateContent").append($deptname);
+            // 添加按钮
+            var $addbtn = $("<a class='addbtn btn'>确认添加</a>");
+            $("#animateContent").append($addbtn);
+            $("#animateDIV").slideDown();
+
+            addInfo($addbtn);
+        }
+    });
+
+
 }
 
 
@@ -251,6 +268,7 @@ function infoUpdate($update) {
 
 function addInfo($addbtn) {
     $addbtn.click(function () {
+        var $carId = $(".info[name='carId']").val();
         var $insureTypeofinsurance = $(".info[name='insureTypeofinsurance']").val();
         var $insuranceStarttime = $(".info[name='insuranceStarttime']").val();
         var $insuranceEndtime = $(".info[name='insuranceEndtime']").val();
@@ -258,9 +276,9 @@ function addInfo($addbtn) {
         var $insureCompany = $(".info[name='insureCompany']").val();
         var $deptname = $(".info[name='deptname']").val();
 
-        var $data = '{"insureTypeofinsurance":"' + $insureTypeofinsurance + '","insuranceStarttime":"' + $insuranceStarttime
+        var $data = '{"carid":' + $carId + ',"insureTypeofinsurance":"' + $insureTypeofinsurance + '","insuranceStarttime":"' + $insuranceStarttime
             + '","insuranceEndtime":"' + $insuranceEndtime + '","carMileage":"' + $carMileage + '","insureCompany":"' + $insureCompany
-            + '","deptname":' + $deptname + '}';
+            + '","deptname":"' + $deptname + '"}';
         //获得当前页
         var $currentPage = $(".pages>ul>li>a[index='1']").text();
         $.ajax({

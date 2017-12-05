@@ -21,9 +21,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.util.List;
 
 /**
+ * @author crown
  * @ClassName CarController
  * @Description TODO
- * @author crown
  * @email 1084961504@qq.com
  * @date Oct 24, 2017 9:29:23 AM
  */
@@ -73,9 +73,9 @@ public class CarController {
      */
     @RequestMapping("/findCarById")
     public String findCarById(int carId, Model model) {
-        Car car = carService.findCarById(carId);
-        model.addAttribute("car", car);
-        return "content_car_detail";
+//        Car car = carService.findCarById(carId);
+//        model.addAttribute("car", car);
+        return null;
     }
 
     /*
@@ -83,10 +83,11 @@ public class CarController {
      */
     @RequestMapping("/findCarByIdAjax")
     @ResponseBody
-    public Car findCarByIdAjax(int carId) {
+    public CarVo findCarByIdAjax(int carId) {
         Car car = carService.findCarById(carId);
-        // System.out.println(car);
-        return car;
+        CarVo carVo=new CarVo();
+        carVo.setCar(car);
+        return carVo;
     }
 
     @RequestMapping("/updateCarAjax")
@@ -108,10 +109,21 @@ public class CarController {
     @RequestMapping("/ss")
     @ResponseBody
     public int ss(int carId) {
-
-
-        System.out.println(carId);
         return carService.deleteCar(carId);
     }
 
+    @RequestMapping("/findAllCarPlateAjax")
+    @ResponseBody
+    public List<Car> findAllCarPlateAjax(){
+        return carService.listCar();
+    }
+
+
+    public CarService getCarService() {
+        return carService;
+    }
+
+    public void setCarService(CarService carService) {
+        this.carService = carService;
+    }
 }

@@ -72,7 +72,7 @@ function cleanIndex(page) {
 }
 
 // 显示
-function showAdd() {
+function showAddInfo() {
     $("#titleInfo").empty("");// 更改标题
     $("#titleInfo").append("添加车辆");
     $("#animateContent").empty("");// 清空再加
@@ -109,22 +109,24 @@ function infoDeatil($a) {
             url: "car/findCarByIdAjax.action",
             data: "carId=" + $carId,
             success: function (data) {
+                console.log(data);
+                var $car=data.car;
 
                 $("#titleInfo").empty("");// 更改标题
                 $("#titleInfo").append("详细信息");
                 $("#animateContent").empty("");// 清空再加
                 $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label><span class="info">'
-                    + data.carPlate + '</span></div>');
+                    + $car.carPlate + '</span></div>');
                 $carMark = $('<div class="textarea"><label class="lab">车辆品牌:</label><span class="info">'
-                    + data.carMark + '</span></div>');
+                    + $car.carMark + '</span></div>');
                 $carColor = $('<div class="textarea"><label class="lab">颜色:</label><span class="info">'
-                    + data.carColor + '</span></div>');
+                    + $car.carColor + '</span></div>');
                 $carMileage = $('<div class="textarea"><label class="lab">车辆总行程:</label><span class="info">'
-                    + data.carMileage + '</span></div>');
+                    + $car.carMileage + '</span></div>');
                 $carAge = $('<div class="textarea"><label class="lab">车龄:</label><span class="info">'
-                    + data.carAge + '</span></div>');
+                    + $car.carAge + '</span></div>');
                 $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label><span class="info">'
-                    + data.carLimit + '</span></div>');
+                    + $car.carLimit + '</span></div>');
 
                 $("#animateContent").append($carPlate);
                 $("#animateContent").append($carMark);
@@ -184,24 +186,26 @@ function infoUpdate($update) {
             url: "car/findCarByIdAjax.action",
             data: "carId=" + $carId,
             success: function (data) {
+                console.log(data);
+                var $car=data.car;
                 $("#titleInfo").empty("");// 更改标题
                 $("#titleInfo").append("更新车辆信息");
                 $("#animateContent").empty("");// 清空再加
 
                 var $id = $('<input name="carId" style="display:none" value="' + $carId + '" />');
                 var $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label>' +
-                    '<input id="sb" class="info" name="carPlate" value="' + data.carPlate + '"/></div>');
+                    '<input id="sb" class="info" name="carPlate" value="' + $car.carPlate + '"/></div>');
                 var $carMark = $('<div class="textarea"><label class="lab">车辆品牌:</label>' +
-                    '<input class="info" name="carMark" value="' + data.carMark + '"/></div>');
+                    '<input class="info" name="carMark" value="' + $car.carMark + '"/></div>');
                 var $carColor = $('<div class="textarea"><label class="lab">颜色:</label>' +
-                    '<input class="info" name="carColor"value="' + data.carColor + '"/></div>');
+                    '<input class="info" name="carColor"value="' + $car.carColor + '"/></div>');
                 var $carMileage = $('<div class="textarea"><label class="lab">车辆总行程:</label>' +
-                    '<input class="info"name="carMileage" value="' + data.carMileage + '"/></div>');
+                    '<input class="info"name="carMileage" value="' + $car.carMileage + '"/></div>');
                 var $carAge = $('<div class="textarea"><label class="lab">车龄:</label>' +
                     '<input class="info Wdate" name="carAge" type="text" value="'
-                    + data.carAge + '" onClick="WdatePicker()" /></div>');
+                    + $car.carAge + '" onClick="WdatePicker()" /></div>');
                 var $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label>' +
-                    '<input class="info" name="carLimit" value="' + data.carLimit + '"/></div>');
+                    '<input class="info" name="carLimit" value="' + $car.carLimit + '"/></div>');
 
                 $("#animateContent").append($id);
                 $("#animateContent").append($carPlate);

@@ -1,4 +1,4 @@
-/**  
+/**
  * @Title CarService.java
  * @Package cn.boom.service
  * @Description TODO
@@ -7,66 +7,70 @@
  */
 package cn.boom.service;
 
-import java.util.List;
-
 import cn.boom.pojo.Car;
 
+import java.util.List;
+
 /**
+ * @author crown
  * @ClassName CarService
  * @Description TODO
- * @author crown
  * @email 1084961504@qq.com
  * @date Oct 24, 2017 9:32:18 AM
  */
 public interface CarService {
 
-	/**
-	 * @Description findCarList
-	 * @param page
-	 * @author crown
-	 * @date Oct 24, 2017
-	 */
-	public List<Car> findCarList(int page);
+    /**
+     * @param page
+     * @Description findCarList
+     * @author crown
+     * @date Oct 24, 2017
+     */
+    List<Car> findCarList(int page);
 
-	/**
-	 * @Description TODO
-	 * @author crown
-	 * @date Oct 31, 2017
-	 */
-	public int findCountCar();
+    /**
+     * @Description TODO
+     * @author crown
+     * @date Oct 31, 2017
+     */
+    int findCountCar();
 
-	/**
-	 * @Description TODO
-	 * @param carId
-	 * @return
-	 * @author crown
-	 * @date Nov 1, 2017
-	 */
-	public Car findCarById(int carId);
+    /**
+     * @param carId
+     * @return
+     * @Description TODO
+     * @author crown
+     * @date Nov 1, 2017
+     */
+    Car findCarById(int carId);
 
-	/**
-	 * @Description update car
-	 * @param car
-	 * @author crown
-	 * @date Nov 3, 2017
-	 */
-	public int updateCar(Car car);
+    /**
+     * @param car
+     * @Description update car
+     * @author crown
+     * @date Nov 3, 2017
+     */
+    int updateCar(Car car);
 
-	/**
-	 * @Description add car
-	 * @return
-	 * @author crown
-	 * @date Nov 6, 2017
-	 */
-	public int addCar(Car car);
+    /**
+     * @return
+     * @Description add car
+     * @author crown
+     * @date Nov 6, 2017
+     */
+    int addCar(Car car);
 
-	/**
-	 * @Description TODO
-	 * @param carId
-	 * @return
-	 * @author crown
-	 * @date Nov 6, 2017
-	 */
-	public int deleteCar(int carId);
+    /**
+     * @param carId
+     * @return
+     * @Description TODO
+     * @author crown
+     * @date Nov 6, 2017
+     */
+    int deleteCar(int carId);
 
+    /**
+     * 查找车牌号
+     */
+    List<Car> listCar();
 }

@@ -23,6 +23,9 @@ public class CarVo {
     private List<Car> cars;
     //分页数量
     private int pageSum;
+    // 车辆信息
+    private Car car;
+
 
     public int getPageSum() {
         return pageSum;
@@ -40,5 +43,11 @@ public class CarVo {
         this.cars = cars;
     }
 
+    public Car getCar() {
+        return car;
+    }
 
+    public void setCar(Car car) {
+        this.car = car;
+    }
 }
