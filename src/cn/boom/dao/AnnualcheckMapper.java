@@ -29,4 +29,7 @@ public interface AnnualcheckMapper {
     int updateByPrimaryKeySelective(Annualcheck record);
 
     int updateByPrimaryKey(Annualcheck record);
+
+    //-----------
+    List<Annualcheck> selectByPage(int page);
 }

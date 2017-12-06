@@ -1,5 +1,8 @@
 package cn.boom.pojo;
 
+import cn.boom.util.JsonDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.util.Date;
 
 public class Annualcheck {
@@ -37,6 +40,8 @@ public class Annualcheck {
         this.annualcheckId = annualcheckId;
     }
 
+    // 使用自定义的date转json转换器
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getLastannualcheckdate() {
         return lastannualcheckdate;
     }
@@ -45,6 +50,8 @@ public class Annualcheck {
         this.lastannualcheckdate = lastannualcheckdate;
     }
 
+    // 使用自定义的date转json转换器
+    @JsonSerialize(using = JsonDateSerializer.class)
     public Date getNextannualcheckdate() {
         return nextannualcheckdate;
     }

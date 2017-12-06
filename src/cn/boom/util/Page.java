@@ -16,7 +16,9 @@ package cn.boom.util;
  */
 public class Page {
 
-	public static final int CARPAGE = 5;// 车辆分页数
-	public static final int INSURANCEPAGE = 5;// 保险分页数
-	public static final int USERPAGE=5;//用户分页数
+	public static final int CAR_PAGE = 5;// 车辆分页数
+	public static final int INSURANCE_PAGE = 5;// 保险分页数
+	public static final int USER_PAGE=5;//用户分页数
+	public static final int ANNUALCHECK_PAGE=5;//年检分页数
+
 }

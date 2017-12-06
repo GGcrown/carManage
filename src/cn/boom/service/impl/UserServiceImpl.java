@@ -97,7 +97,7 @@ public class UserServiceImpl implements UserService {
     public int countUser() {
         UserExample userExample = new UserExample();
         int countUser = userMapper.countByExample(userExample);
-        int page = countUser % Page.USERPAGE == 0 ? countUser / Page.USERPAGE : countUser / Page.USERPAGE + 1;
+        int page = countUser % Page.USER_PAGE == 0 ? countUser / Page.USER_PAGE : countUser / Page.USER_PAGE + 1;
         return page;
     }
 
@@ -115,7 +115,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> findUserList(int page) {
-        return userMapper.selectByPage(page * Page.USERPAGE);
+        return userMapper.selectByPage(page * Page.USER_PAGE);
     }
 
 }

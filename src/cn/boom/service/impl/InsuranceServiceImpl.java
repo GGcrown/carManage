@@ -7,17 +7,15 @@
  */
 package cn.boom.service.impl;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import cn.boom.dao.InsuranceMapper;
 import cn.boom.pojo.Insurance;
 import cn.boom.pojo.InsuranceExample;
 import cn.boom.service.InsuranceService;
 import cn.boom.util.Page;
-import cn.boom.vo.InsuranceVo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @ClassName InsuranceServiceImpl
@@ -39,7 +37,7 @@ public class InsuranceServiceImpl implements InsuranceService {
 	 */
 	@Override
 	public List<Insurance> findInsuranceList(Integer page) {
-		return insuranceMapper.selectCarByPage(page * Page.INSURANCEPAGE);
+		return insuranceMapper.selectCarByPage(page * Page.INSURANCE_PAGE);
 	}
 
 	@Override
@@ -51,8 +49,8 @@ public class InsuranceServiceImpl implements InsuranceService {
 	public int countInsurance() {
 		InsuranceExample example = new InsuranceExample();
 		int insuranceSum = insuranceMapper.countByExample(example);
-		int insurancePage = insuranceSum % Page.INSURANCEPAGE == 0 ? insuranceSum / Page.INSURANCEPAGE
-				: insuranceSum / Page.INSURANCEPAGE + 1;
+		int insurancePage = insuranceSum % Page.INSURANCE_PAGE == 0 ? insuranceSum / Page.INSURANCE_PAGE
+				: insuranceSum / Page.INSURANCE_PAGE + 1;
 		return insurancePage;
 	}
 

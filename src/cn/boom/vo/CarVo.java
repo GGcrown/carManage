@@ -21,7 +21,7 @@ import java.util.List;
 public class CarVo {
     // 列表显示
     private List<Car> cars;
-    //分页数量
+    // 分页数量
     private int pageSum;
     // 车辆信息
     private Car car;

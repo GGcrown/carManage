@@ -32,7 +32,7 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> findCarList(int page) {
-        List<Car> cars = carMapper.selectByPage(page * Page.CARPAGE);
+        List<Car> cars = carMapper.selectByPage(page * Page.CAR_PAGE);
         return cars;
     }
 
@@ -45,7 +45,7 @@ public class CarServiceImpl implements CarService {
         CarExample example = new CarExample();
         // example
         int countCar = carMapper.countByExample(example);
-        int page = countCar % Page.CARPAGE == 0 ? countCar / Page.CARPAGE : countCar / Page.CARPAGE + 1;
+        int page = countCar % Page.CAR_PAGE == 0 ? countCar / Page.CAR_PAGE : countCar / Page.CAR_PAGE + 1;
         return page;
     }
 
