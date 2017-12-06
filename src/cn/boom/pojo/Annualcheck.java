@@ -6,20 +6,21 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import java.util.Date;
 
 public class Annualcheck {
+    // 年检id
     private Integer annualcheckId;
-
+    // 最后年检日期
     private Date lastannualcheckdate;
-
+    // 下次年检日期
     private Date nextannualcheckdate;
-
+    // 图片路径
     private String path;
-
+    // 投保单位
     private String deptname;
-
+    // 用户id
     private Integer userId;
-
+    // 车辆id
     private Integer carId;
-
+    // 保留字段
     private String reserve1;
 
     private String reserve2;
@@ -31,6 +32,8 @@ public class Annualcheck {
     private String reserve5;
 
     private String reserve6;
+    // 车牌号  非表内字段
+    private String carPlate;
 
     public Integer getAnnualcheckId() {
         return annualcheckId;
@@ -138,5 +141,13 @@ public class Annualcheck {
 
     public void setReserve6(String reserve6) {
         this.reserve6 = reserve6 == null ? null : reserve6.trim();
+    }
+
+    public String getCarPlate() {
+        return carPlate;
+    }
+
+    public void setCarPlate(String carPlate) {
+        this.carPlate = carPlate;
     }
 }

@@ -110,7 +110,7 @@ function infoDeatil($a) {
             data: "carId=" + $carId,
             success: function (data) {
                 console.log(data);
-                var $car=data.car;
+                var $car = data.car;
 
                 $("#titleInfo").empty("");// 更改标题
                 $("#titleInfo").append("详细信息");
@@ -187,7 +187,7 @@ function infoUpdate($update) {
             data: "carId=" + $carId,
             success: function (data) {
                 console.log(data);
-                var $car=data.car;
+                var $car = data.car;
                 $("#titleInfo").empty("");// 更改标题
                 $("#titleInfo").append("更新车辆信息");
                 $("#animateContent").empty("");// 清空再加

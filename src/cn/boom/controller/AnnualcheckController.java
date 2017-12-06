@@ -21,29 +21,53 @@ import java.util.List;
 @Controller
 public class AnnualcheckController {
 
+    // 自动注入年检接口
     @Autowired
     private AnnualcheckService annualcheckService;
 
-
+    /**
+     * 添加年检
+     *
+     * @param annualcheck
+     * @return
+     */
     @RequestMapping("/addAnnualcheckAjax")
     @ResponseBody
     public int addAnnualcheckAjax(Annualcheck annualcheck) {
         return annualcheckService.addAnnualcheck(annualcheck);
     }
 
+    /**
+     * 删除年检
+     *
+     * @param annualcheckId
+     * @return
+     */
     @RequestMapping("/deleteAnnualcheckAjax")
     @ResponseBody
     public int deleteAnnualcheckAjax(int annualcheckId) {
-        //todo
-        return 0;
+
+        return annualcheckService.deleteByAnnualcheckId(annualcheckId);
     }
 
+    /**
+     * 更新年检
+     *
+     * @param annualcheck
+     * @return
+     */
     @RequestMapping("/updateAnnualcheckAjax")
     @ResponseBody
     public int updateAnnualcheckAjax(Annualcheck annualcheck) {
         return annualcheckService.updateByAnnualcheckId(annualcheck);
     }
 
+    /**
+     * 分页查询年检
+     *
+     * @param page
+     * @return
+     */
     @RequestMapping("/listAnnualcheckByPageAjax")
     @ResponseBody
     public AnnualcheckVo listAnnualcheckByPageAjax(int page) {
@@ -53,6 +77,12 @@ public class AnnualcheckController {
         return annualcheckVo;
     }
 
+    /**
+     * 通过年检id查找年检信息
+     *
+     * @param annualcheckId
+     * @return
+     */
     @RequestMapping("/findAnnualcheckById")
     @ResponseBody
     public AnnualcheckVo findAnnualcheckById(int annualcheckId) {
@@ -70,8 +100,10 @@ public class AnnualcheckController {
      */
     @RequestMapping("/countAnnualcheckAjax")
     @ResponseBody
-    public int countAnnualcheckAjax() {
-        return annualcheckService.countAnnualcheck();
+    public AnnualcheckVo countAnnualcheckAjax() {
+        AnnualcheckVo annualcheckVo = new AnnualcheckVo();
+        annualcheckVo.setPageSum(annualcheckService.countAnnualcheck());
+        return annualcheckVo;
     }
 
 }

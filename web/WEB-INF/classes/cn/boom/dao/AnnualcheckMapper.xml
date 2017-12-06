@@ -340,6 +340,9 @@
 
     <!---->
     <select id="selectByPage" parameterType="int" resultMap="BaseResultMap">
-        SELECT * FROM `annualcheck` LIMIT #{0},5;
+        SELECT annualcheck.*,car.car_plate AS carPlate
+        FROM annualcheck INNER JOIN car ON annualcheck.car_id=car.car_id
+        WHERE annualcheck.reserve1 != '3'
+        LIMIT #{0},5
     </select>
 </mapper>

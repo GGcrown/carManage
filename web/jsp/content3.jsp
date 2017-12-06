@@ -46,11 +46,12 @@
         <table class="tblcontent">
             <thead>
             <tr>
-                <th>图片</th>
-                <th>单位名称</th>
+                <th>车牌号</th>
+                <th>投保单位</th>
                 <th>最后年检时间</th>
                 <th>下次年检时间</th>
-                <th>投保单位</th>
+                <th>查看</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody class="tbody">

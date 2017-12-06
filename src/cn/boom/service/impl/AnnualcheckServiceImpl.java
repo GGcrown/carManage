@@ -30,8 +30,11 @@ public class AnnualcheckServiceImpl implements AnnualcheckService {
 
     @Override
     public int deleteByAnnualcheckId(int annualcheckId) {
-        //todo
-        return 0;
+        AnnualcheckExample annualcheckExample=new AnnualcheckExample();
+        Annualcheck annualcheck=new Annualcheck();
+        annualcheck.setAnnualcheckId(annualcheckId);
+        annualcheck.setReserve1("3");
+        return annualcheckMapper.updateByPrimaryKeySelective(annualcheck);
     }
 
     @Override

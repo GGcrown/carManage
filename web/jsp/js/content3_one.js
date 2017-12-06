@@ -20,17 +20,18 @@ function filpPage(page) {
 function showInfoList(info) {
     for (var i = 0; i < info.length; i++) {
         var tr = $("<tr></tr>");// tr节点对象
+        tr.append("<td align='center'>" + info[i].carPlate + "</td>");
         tr.append("<td align='center'>" + info[i].deptname + "</td>");
         tr.append("<td align='center'>" + info[i].lastannualcheckdate + "</td>");
         tr.append("<td align='center'>" + info[i].nextannualcheckdate + "</td>");
 
         var $td = $("<td align='center'></td>");
         //详情按钮
-        var $detail = $("<a insureId='" + info[i].insureId + "' title='查看详情' class='iconfont hovera'>&#xe600;</a>");
+        var $detail = $("<a cid='" + info[i].carId + "' title='查看详情' class='iconfont hovera'>&#xe61c;</a>");
         //修改按钮
-        var $update = $("<a insureId=' " + info[i].insureId + "' title='修改' class='iconfont hovera'>&#xe615;</a>");
+        var $update = $("<a annualcheckId=' " + info[i].annualcheckId + "' title='修改' class='iconfont hovera'>&#xe615;</a>");
         //删除按钮
-        var $delete = $("<a insureId='" + info[i].insureId + "' title='删除' class='iconfont hovera' >&#xe603;</a>");
+        var $delete = $("<a annualcheckId='" + info[i].annualcheckId + "' title='删除' class='iconfont hovera' >&#xe603;</a>");
         $td.append($detail);
         tr.append($td);
 
@@ -38,7 +39,6 @@ function showInfoList(info) {
         $td.append($update);
         $td.append($delete);
         tr.append($td);
-
 
         $(".tbody").append(tr);
         tr.mouseenter(function () {
@@ -72,7 +72,7 @@ function cleanIndex(page) {
 // 显示
 function showAddInfo() {
     $("#titleInfo").empty("");// 更改标题
-    $("#titleInfo").append("添加车辆保险");
+    $("#titleInfo").append("添加车辆年检");
     $("#animateContent").empty("");// 清空再加
 
     $.ajax({
@@ -86,11 +86,16 @@ function showAddInfo() {
             }
 
             var $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label></div>');
-            var $insureTypeofinsurance = $('<div class="textarea"><label class="lab">保险类型:</label><input class="info" name="insureTypeofinsurance"/></div>');
-            var $insuranceStarttime = $('<div class="textarea"><label class="lab">保险开始时间:</label><input class="info Wdate" name="insuranceStarttime" onClick="WdatePicker()" /></div>');
-            var $insuranceEndtime = $('<div class="textarea"><label class="lab">保险失效时间:</label><input class="info Wdate" name="insuranceEndtime" onClick="WdatePicker()" /></div>');
-            var $insureCompany = $('<div class="textarea"><label class="lab">车辆单位:</label><input class="info" name="insureCompany" type="text"/></div>');
-            var $deptname = $('<div class="textarea"><label class="lab">保险公司:</label><input class="info" name="deptname" /></div>');
+            var $insureTypeofinsurance = $('<div class="textarea"><label class="lab">投保单位:</label>' +
+                '<input class="info" name="insureTypeofinsurance"/></div>');
+            var $insuranceStarttime = $('<div class="textarea"><label class="lab">上次年检事件:</label>' +
+                '<input class="info Wdate" name="insuranceStarttime" onClick="WdatePicker()" /></div>');
+            var $insuranceEndtime = $('<div class="textarea"><label class="lab">下次年检事件:</label>' +
+                '<input class="info Wdate" name="insuranceEndtime" onClick="WdatePicker()" /></div>');
+            var $insureCompany = $('<div class="textarea"><label class="lab">车辆单位:</label>' +
+                '<input class="info" name="insureCompany" type="text"/></div>');
+            var $deptname = $('<div class="textarea"><label class="lab">保险公司:</label>' +
+                '<input class="info" name="deptname" /></div>');
             $carPlate.append($plate);
 
             $("#animateContent").append($carPlate);
@@ -112,43 +117,43 @@ function showAddInfo() {
 }
 
 
-function infoDeatil($a) {
-    // 详细信息点击事件
+function infoDeatil($a) {// 详细信息点击事件
     $a.click(function () {
-        var $insuranceId = $(this).attr("insureid");
-        $d = 'insuranceId =' + $insuranceId;
+        var $carId = $(this).attr("cid");
         $.ajax({
             type: "post",
-            url: "insurance/findByInsureIdAjax.action?insuranceId=" + $insuranceId,
-            // data : $d ,
-            success: function (d) {
-                var data = d.insurance;
+            url: "car/findCarByIdAjax.action",
+            data: "carId=" + $carId,
+            success: function (data) {
+                console.log(data);
+                var $car = data.car;
+
                 $("#titleInfo").empty("");// 更改标题
                 $("#titleInfo").append("详细信息");
                 $("#animateContent").empty("");// 清空再加
-                $type = $('<div class="textarea"><label class="lab">保险类型:</label><span class="info">' + data.insureTypeofinsurance
-                    + '</span></div>');
-                $sTime = $('<div class="textarea"><label class="lab">保险生效时间:</label><span class="info">' + data.insuranceStarttime
-                    + '</span></div>');
-                $eTime = $('<div class="textarea"><label class="lab">保险失效时间:</label><span class="info">' + data.insuranceEndtime
-                    + '</span></div>');
-                $filepath = $('<div class="textarea"><label class="lab">图片:</label><span class="info">' + data.filepath
-                    + '</span></div>');
-                $deptname = $('<div class="textarea"><label class="lab">车辆单位:</label><span class="info">' + data.deptname
-                    + '</span></div>');
-                $insureType = $('<div class="textarea"><label class="lab">保险类型:</label><span class="info">' + data.insureType
-                    + '</span></div>');
+                $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label><span class="info">'
+                    + $car.carPlate + '</span></div>');
+                $carMark = $('<div class="textarea"><label class="lab">车辆品牌:</label><span class="info">'
+                    + $car.carMark + '</span></div>');
+                $carColor = $('<div class="textarea"><label class="lab">颜色:</label><span class="info">'
+                    + $car.carColor + '</span></div>');
+                $carMileage = $('<div class="textarea"><label class="lab">车辆总行程:</label><span class="info">'
+                    + $car.carMileage + '</span></div>');
+                $carAge = $('<div class="textarea"><label class="lab">车龄:</label><span class="info">'
+                    + $car.carAge + '</span></div>');
+                $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label><span class="info">'
+                    + $car.carLimit + '</span></div>');
 
-                $("#animateContent").append($type);
-                $("#animateContent").append($sTime);
-                $("#animateContent").append($eTime);
-                $("#animateContent").append($filepath);
-                $("#animateContent").append($deptname);
-                $("#animateContent").append($insureType);
+                $("#animateContent").append($carPlate);
+                $("#animateContent").append($carMark);
+                $("#animateContent").append($carColor);
+                $("#animateContent").append($carMileage);
+                $("#animateContent").append($carAge);
+                $("#animateContent").append($carLimit);
                 $("#animateDIV").slideDown();
             }
         });
-    });
+    })
 }
 
 function infoDelete($delete) {
@@ -166,9 +171,9 @@ function infoDelete($delete) {
             if (isConfirm == true) {
                 //获得当前页
                 var $currentPage = $(".pages>ul>li>a[index='1']").text();
-                var insureId = $delete.attr("insureId");
-                $.post("insurance/deleteInsuranceAjax.action",
-                    {insureId: insureId},
+                var annualcheckId = $delete.attr("annualcheckId");
+                $.post("annualcheck/deleteAnnualcheckAjax.action",
+                    {annualcheckId: annualcheckId},
                     function (data) {
                         if (data > 0) {
                             swal("删除成功！", "", "success");
