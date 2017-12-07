@@ -1,6 +1,6 @@
 $(function () {
     // 初始显示翻页列表
-    listPaging("annualcheck/countAnnualcheckAjax.action");
+    listPagingFlash();
 });
 
 //翻页
@@ -86,24 +86,18 @@ function showAddInfo() {
             }
 
             var $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label></div>');
-            var $insureTypeofinsurance = $('<div class="textarea"><label class="lab">投保单位:</label>' +
-                '<input class="info" name="insureTypeofinsurance"/></div>');
-            var $insuranceStarttime = $('<div class="textarea"><label class="lab">上次年检事件:</label>' +
-                '<input class="info Wdate" name="insuranceStarttime" onClick="WdatePicker()" /></div>');
-            var $insuranceEndtime = $('<div class="textarea"><label class="lab">下次年检事件:</label>' +
-                '<input class="info Wdate" name="insuranceEndtime" onClick="WdatePicker()" /></div>');
-            var $insureCompany = $('<div class="textarea"><label class="lab">车辆单位:</label>' +
-                '<input class="info" name="insureCompany" type="text"/></div>');
-            var $deptname = $('<div class="textarea"><label class="lab">保险公司:</label>' +
-                '<input class="info" name="deptname" /></div>');
-            $carPlate.append($plate);
+            var $deptname = $('<div class="textarea"><label class="lab">车辆单位:</label>' +
+                '<input class="info" name="deptname"/></div>');
+            var $lastannualcheckdate = $('<div class="textarea"><label class="lab">上次年检事件:</label>' +
+                '<input class="info Wdate" name="lastannualcheckdate" onClick="WdatePicker()" /></div>');
+            var $nextannualcheckdate = $('<div class="textarea"><label class="lab">下次年检事件:</label>' +
+                '<input class="info Wdate" name="nextannualcheckdate" onClick="WdatePicker()" /></div>');
 
+            $carPlate.append($plate);
             $("#animateContent").append($carPlate);
-            $("#animateContent").append($insureTypeofinsurance);
-            $("#animateContent").append($insuranceStarttime);
-            $("#animateContent").append($insuranceEndtime);
-            $("#animateContent").append($insureCompany);
             $("#animateContent").append($deptname);
+            $("#animateContent").append($lastannualcheckdate);
+            $("#animateContent").append($nextannualcheckdate);
             // 添加按钮
             var $addbtn = $("<a class='addbtn btn'>确认添加</a>");
             $("#animateContent").append($addbtn);
@@ -179,7 +173,7 @@ function infoDelete($delete) {
                             swal("删除成功！", "", "success");
                             //自动刷新翻页
                             filpPage($("li>a[index=1]").text() - 1);
-                            listPaging("insurance/countInsuranceAjax.action", $currentPage);
+                            listPagingFlash();
                             $("#animateDIV").slideUp();
                         } else {
                             swal("删除失败！", "", "error");
@@ -271,34 +265,34 @@ function infoUpdate($update) {
 function addInfo($addbtn) {
     $addbtn.click(function () {
         var $carId = $(".info[name='carId']").val();
-        var $insureTypeofinsurance = $(".info[name='insureTypeofinsurance']").val();
-        var $insuranceStarttime = $(".info[name='insuranceStarttime']").val();
-        var $insuranceEndtime = $(".info[name='insuranceEndtime']").val();
-        var $carMileage = $(".info[name='carMileage']").val();
-        var $insureCompany = $(".info[name='insureCompany']").val();
+        var $lastannualcheckdate = $(".info[name='lastannualcheckdate']").val();
+        var $nextannualcheckdate = $(".info[name='nextannualcheckdate']").val();
         var $deptname = $(".info[name='deptname']").val();
 
-        var $data = '{"carid":' + $carId + ',"insureTypeofinsurance":"' + $insureTypeofinsurance + '","insuranceStarttime":"' + $insuranceStarttime
-            + '","insuranceEndtime":"' + $insuranceEndtime + '","carMileage":"' + $carMileage + '","insureCompany":"' + $insureCompany
+        var $data = '{"carid":' + $carId + ',"lastannualcheckdate":"' + $lastannualcheckdate + '","nextannualcheckdate":"' + $nextannualcheckdate
             + '","deptname":"' + $deptname + '"}';
         //获得当前页
-        var $currentPage = $(".pages>ul>li>a[index='1']").text();
+        // var $currentPage = $(".pages>ul>li>a[index='1']").text();
         $.ajax({
             type: "post",
-            url: "insurance/addInsuranceAjax.action",
+            url: "annualcheck/addAnnualcheckAjax.action",
             contentType: "application/json;charset=utf-8",
             data: $data,
             success: function (data) {
                 if (data > 0) {
                     // 刷新列表页面
-                    listPaging("insurance/countInsuranceAjax.action", $currentPage);
+                    listPagingFlash();
                     filpPage($("li>a[index=1]").text() - 1);
                     $("#animateDIV").hide();
-                    swal("添加车辆保险成功！");
+                    swal("添加年检成功！");
                 } else {
-                    swal("添加车辆保险失败");
+                    swal("添加年检失败");
                 }
             }
         })
     })
+}
+
+function listPagingFlash() {
+    listPaging("annualcheck/countAnnualcheckAjax.action");
 }

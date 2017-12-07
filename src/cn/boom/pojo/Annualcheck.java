@@ -20,9 +20,9 @@ public class Annualcheck {
     private Integer userId;
     // 车辆id
     private Integer carId;
+    // 年检状态 1:正常  2:不正常   3:被删除
+    private Integer annualcheckType;
     // 保留字段
-    private String reserve1;
-
     private String reserve2;
 
     private String reserve3;
@@ -95,12 +95,12 @@ public class Annualcheck {
         this.carId = carId;
     }
 
-    public String getReserve1() {
-        return reserve1;
+    public Integer getAnnualcheckType() {
+        return annualcheckType;
     }
 
-    public void setReserve1(String reserve1) {
-        this.reserve1 = reserve1 == null ? null : reserve1.trim();
+    public void setAnnualcheckType(Integer annualcheckType) {
+        this.annualcheckType = annualcheckType;
     }
 
     public String getReserve2() {

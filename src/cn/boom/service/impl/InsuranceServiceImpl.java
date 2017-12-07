@@ -1,4 +1,4 @@
-/**  
+/**
  * @Title InsuranceServiceImpl.java
  * @Package cn.boom.service
  * @Description TODO
@@ -27,61 +27,61 @@ import java.util.List;
 @Service
 public class InsuranceServiceImpl implements InsuranceService {
 
-	@Autowired
-	private InsuranceMapper insuranceMapper;
+    @Autowired
+    private InsuranceMapper insuranceMapper;
 
-	/**
-	 * @Description
-	 * @param page 页数
-	 * @return
-	 */
-	@Override
-	public List<Insurance> findInsuranceList(Integer page) {
-		return insuranceMapper.selectCarByPage(page * Page.INSURANCE_PAGE);
-	}
+    /**
+     * @Description
+     * @param page 页数
+     * @return
+     */
+    @Override
+    public List<Insurance> findInsuranceList(Integer page) {
+        return insuranceMapper.selectCarByPage(page * Page.INSURANCE_PAGE);
+    }
 
-	@Override
-	public Insurance findByInsuranceId(Integer insuranceId) {
-		return insuranceMapper.selectByPrimaryKey(insuranceId);
-	}
+    @Override
+    public Insurance findByInsuranceId(Integer insuranceId) {
+        return insuranceMapper.selectByPrimaryKey(insuranceId);
+    }
 
-	@Override
-	public int countInsurance() {
-		InsuranceExample example = new InsuranceExample();
-		int insuranceSum = insuranceMapper.countByExample(example);
-		int insurancePage = insuranceSum % Page.INSURANCE_PAGE == 0 ? insuranceSum / Page.INSURANCE_PAGE
-				: insuranceSum / Page.INSURANCE_PAGE + 1;
-		return insurancePage;
-	}
+    @Override
+    public int countInsurance() {
+        InsuranceExample example = new InsuranceExample();
+        int insuranceSum = insuranceMapper.countByExample(example);
+        int insurancePage = insuranceSum % Page.INSURANCE_PAGE == 0 ? insuranceSum / Page.INSURANCE_PAGE
+                : insuranceSum / Page.INSURANCE_PAGE + 1;
+        return insurancePage;
+    }
 
-	/**
-	 * @Description TODO
-	 * @param insurance
-	 * @return
-	 */
-	@Override
-	public int updateInsurance(Insurance insurance) {
-		return insuranceMapper.updateByPrimaryKeySelective(insurance);
-	}
+    /**
+     * @Description TODO
+     * @param insurance
+     * @return
+     */
+    @Override
+    public int updateInsurance(Insurance insurance) {
+        return insuranceMapper.updateByPrimaryKeySelective(insurance);
+    }
 
-	/**
-	 * @Description TODO
-	 * @param insurance
-	 * @return
-	 */
-	@Override
-	public int addInsurance(Insurance insurance) {
-		return insuranceMapper.insert(insurance);
-	}
+    /**
+     * @Description TODO
+     * @param insurance
+     * @return
+     */
+    @Override
+    public int addInsurance(Insurance insurance) {
+        return insuranceMapper.insert(insurance);
+    }
 
-	/**
-	 * @Description TODO
-	 * @param insureId
-	 * @return
-	 */
-	@Override
-	public int deleteInsurance(int insureId) {
-		return insuranceMapper.deleteByPrimaryKey(insureId);
-	}
+    /**
+     * @Description TODO
+     * @param insureId
+     * @return
+     */
+    @Override
+    public int deleteInsurance(int insureId) {
+        return insuranceMapper.deleteByPrimaryKey(insureId);
+    }
 
 }

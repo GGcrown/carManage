@@ -6,7 +6,6 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
-
 public interface AnnualcheckMapper {
     int countByExample(AnnualcheckExample example);
 
@@ -29,7 +28,7 @@ public interface AnnualcheckMapper {
     int updateByPrimaryKeySelective(Annualcheck record);
 
     int updateByPrimaryKey(Annualcheck record);
-
     //-----------
     List<Annualcheck> selectByPage(int page);
+
 }

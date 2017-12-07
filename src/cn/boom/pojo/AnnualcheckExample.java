@@ -572,73 +572,63 @@ public class AnnualcheckExample {
             return (Criteria) this;
         }
 
-        public Criteria andReserve1IsNull() {
-            addCriterion("reserve1 is null");
+        public Criteria andAnnualcheckTypeIsNull() {
+            addCriterion("annualcheck_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1IsNotNull() {
-            addCriterion("reserve1 is not null");
+        public Criteria andAnnualcheckTypeIsNotNull() {
+            addCriterion("annualcheck_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1EqualTo(String value) {
-            addCriterion("reserve1 =", value, "reserve1");
+        public Criteria andAnnualcheckTypeEqualTo(Integer value) {
+            addCriterion("annualcheck_type =", value, "annualcheckType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1NotEqualTo(String value) {
-            addCriterion("reserve1 <>", value, "reserve1");
+        public Criteria andAnnualcheckTypeNotEqualTo(Integer value) {
+            addCriterion("annualcheck_type <>", value, "annualcheckType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1GreaterThan(String value) {
-            addCriterion("reserve1 >", value, "reserve1");
+        public Criteria andAnnualcheckTypeGreaterThan(Integer value) {
+            addCriterion("annualcheck_type >", value, "annualcheckType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1GreaterThanOrEqualTo(String value) {
-            addCriterion("reserve1 >=", value, "reserve1");
+        public Criteria andAnnualcheckTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("annualcheck_type >=", value, "annualcheckType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1LessThan(String value) {
-            addCriterion("reserve1 <", value, "reserve1");
+        public Criteria andAnnualcheckTypeLessThan(Integer value) {
+            addCriterion("annualcheck_type <", value, "annualcheckType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1LessThanOrEqualTo(String value) {
-            addCriterion("reserve1 <=", value, "reserve1");
+        public Criteria andAnnualcheckTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("annualcheck_type <=", value, "annualcheckType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1Like(String value) {
-            addCriterion("reserve1 like", value, "reserve1");
+        public Criteria andAnnualcheckTypeIn(List<Integer> values) {
+            addCriterion("annualcheck_type in", values, "annualcheckType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1NotLike(String value) {
-            addCriterion("reserve1 not like", value, "reserve1");
+        public Criteria andAnnualcheckTypeNotIn(List<Integer> values) {
+            addCriterion("annualcheck_type not in", values, "annualcheckType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1In(List<String> values) {
-            addCriterion("reserve1 in", values, "reserve1");
+        public Criteria andAnnualcheckTypeBetween(Integer value1, Integer value2) {
+            addCriterion("annualcheck_type between", value1, value2, "annualcheckType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1NotIn(List<String> values) {
-            addCriterion("reserve1 not in", values, "reserve1");
-            return (Criteria) this;
-        }
-
-        public Criteria andReserve1Between(String value1, String value2) {
-            addCriterion("reserve1 between", value1, value2, "reserve1");
-            return (Criteria) this;
-        }
-
-        public Criteria andReserve1NotBetween(String value1, String value2) {
-            addCriterion("reserve1 not between", value1, value2, "reserve1");
+        public Criteria andAnnualcheckTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("annualcheck_type not between", value1, value2, "annualcheckType");
             return (Criteria) this;
         }
 

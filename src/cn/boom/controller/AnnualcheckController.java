@@ -34,6 +34,7 @@ public class AnnualcheckController {
     @RequestMapping("/addAnnualcheckAjax")
     @ResponseBody
     public int addAnnualcheckAjax(Annualcheck annualcheck) {
+        annualcheck.setUserId(3);
         return annualcheckService.addAnnualcheck(annualcheck);
     }
 
@@ -105,5 +106,5 @@ public class AnnualcheckController {
         annualcheckVo.setPageSum(annualcheckService.countAnnualcheck());
         return annualcheckVo;
     }
-
+    
 }

@@ -16,6 +16,7 @@ import cn.boom.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,7 +54,6 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public int addUser(User user) {
-//        System.out.println(user);
         User find = userMapper.selectByUsername(user.getUsername());
         if (find != null) {
             return -1;
@@ -70,8 +70,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public int deleteUser(int userid) {
-//        return userMapper.deleteByPrimaryKey(userid);
         User user = new User();
+        List list = new ArrayList();
         user.setUserid(userid);
         user.setUsertype(3);//设置3为已经删除用户
         return userMapper.updateByPrimaryKeySelective(user);
@@ -96,6 +96,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public int countUser() {
         UserExample userExample = new UserExample();
+        userExample.createCriteria().andUsertypeNotEqualTo(3);
         int countUser = userMapper.countByExample(userExample);
         int page = countUser % Page.USER_PAGE == 0 ? countUser / Page.USER_PAGE : countUser / Page.USER_PAGE + 1;
         return page;

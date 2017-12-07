@@ -30,10 +30,9 @@ public class AnnualcheckServiceImpl implements AnnualcheckService {
 
     @Override
     public int deleteByAnnualcheckId(int annualcheckId) {
-        AnnualcheckExample annualcheckExample=new AnnualcheckExample();
-        Annualcheck annualcheck=new Annualcheck();
+        Annualcheck annualcheck = new Annualcheck();
         annualcheck.setAnnualcheckId(annualcheckId);
-        annualcheck.setReserve1("3");
+        annualcheck.setAnnualcheckType(3);
         return annualcheckMapper.updateByPrimaryKeySelective(annualcheck);
     }
 
@@ -55,6 +54,8 @@ public class AnnualcheckServiceImpl implements AnnualcheckService {
     @Override
     public int countAnnualcheck() {
         AnnualcheckExample annualcheckExample = new AnnualcheckExample();
+        //默认3为被删除
+        annualcheckExample.createCriteria().andAnnualcheckTypeNotEqualTo(3);
         int count = annualcheckMapper.countByExample(annualcheckExample);
         //三目运算符
         return count % Page.ANNUALCHECK_PAGE == 0 ? count / Page.ANNUALCHECK_PAGE : count / Page.ANNUALCHECK_PAGE + 1;
