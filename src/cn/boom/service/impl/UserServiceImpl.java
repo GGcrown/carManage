@@ -73,7 +73,7 @@ public class UserServiceImpl implements UserService {
         User user = new User();
         List list = new ArrayList();
         user.setUserid(userid);
-        user.setUsertype(3);//设置3为已经删除用户
+        user.setUsertype(3);//设置 3为已经删除用户
         return userMapper.updateByPrimaryKeySelective(user);
     }
 
