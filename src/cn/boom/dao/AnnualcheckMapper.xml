@@ -78,6 +78,7 @@
         annualcheck_id, lastAnnualCheckDate, nextAnnualCheckDate, path, deptname, user_id,
         car_id, annualcheck_type, reserve2, reserve3, reserve4, reserve5, reserve6
     </sql>
+
     <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.boom.pojo.AnnualcheckExample" >
         select
         <if test="distinct" >
@@ -341,6 +342,13 @@
         FROM annualcheck INNER JOIN car ON annualcheck.car_id=car.car_id
         WHERE annualcheck.annualcheck_type != 3
         LIMIT #{0},5
+    </select>
+
+
+    <select id="selectfullByPrimaryKey" resultMap="BaseResultMap" parameterType="int" >
+        SELECT annualcheck.* , car.car_plate as carPlate
+        from annualcheck INNER JOIN car ON annualcheck.car_id=car.car_id
+        where annualcheck_id = #{annualcheckId,jdbcType=INTEGER}
     </select>
 
 </mapper>

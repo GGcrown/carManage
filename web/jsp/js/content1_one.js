@@ -209,7 +209,7 @@ function infoUpdate($update) {
                     + ' <input name="insureTypeofinsurance" value="' + $insurance.insureTypeofinsurance + '"/></span></div>');
                 var $sTime = $('<div class="textarea"><label class="lab">保险生效时间:</label><span class="info"> '
                     + '<input name="insuranceStarttime" class="Wdate" value="' + $insurance.insuranceStarttime
-                    + '"  onClick="WdatePicker()"/></span></div>');
+                    + '" onClick="WdatePicker()"/></span></div>');
                 var $eTime = $('<div class="textarea"><label class="lab">保险失效时间:</label><span class="info"> '
                     + '<input name="insuranceEndtime" class="Wdate" value="' + $insurance.insuranceEndtime
                     + '"  onClick="WdatePicker()"/></span></div>');

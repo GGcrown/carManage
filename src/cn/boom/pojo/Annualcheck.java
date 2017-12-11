@@ -150,4 +150,19 @@ public class Annualcheck {
     public void setCarPlate(String carPlate) {
         this.carPlate = carPlate;
     }
+
+    @Override
+    public String toString() {
+        return "Annualcheck{" +
+                "annualcheckId=" + annualcheckId +
+                ", lastannualcheckdate=" + lastannualcheckdate +
+                ", nextannualcheckdate=" + nextannualcheckdate +
+                ", path='" + path + '\'' +
+                ", deptname='" + deptname + '\'' +
+                ", userId=" + userId +
+                ", carId=" + carId +
+                ", annualcheckType=" + annualcheckType +
+                '}';
+    }
+
 }

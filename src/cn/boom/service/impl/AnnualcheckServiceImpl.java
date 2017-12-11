@@ -24,16 +24,16 @@ public class AnnualcheckServiceImpl implements AnnualcheckService {
     private AnnualcheckMapper annualcheckMapper;
 
     @Override
-    public int addAnnualcheck(Annualcheck annualcheck) {
-        return annualcheckMapper.insertSelective(annualcheck);
-    }
-
-    @Override
     public int deleteByAnnualcheckId(int annualcheckId) {
         Annualcheck annualcheck = new Annualcheck();
         annualcheck.setAnnualcheckId(annualcheckId);
         annualcheck.setAnnualcheckType(3);
         return annualcheckMapper.updateByPrimaryKeySelective(annualcheck);
+    }
+
+    @Override
+    public int addAnnualcheck(Annualcheck annualcheck) {
+        return annualcheckMapper.insertSelective(annualcheck);
     }
 
     @Override
@@ -43,7 +43,8 @@ public class AnnualcheckServiceImpl implements AnnualcheckService {
 
     @Override
     public Annualcheck findAnnualcheckById(int annualcheckId) {
-        return annualcheckMapper.selectByPrimaryKey(annualcheckId);
+        System.out.println(annualcheckId);
+        return annualcheckMapper.selectfullByPrimaryKey(annualcheckId);
     }
 
     @Override

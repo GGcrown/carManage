@@ -2,9 +2,12 @@ package cn.boom.controller;
 
 import cn.boom.pojo.Annualcheck;
 import cn.boom.service.AnnualcheckService;
+import cn.boom.util.BaseLog;
 import cn.boom.vo.AnnualcheckVo;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,6 +28,10 @@ public class AnnualcheckController {
     @Autowired
     private AnnualcheckService annualcheckService;
 
+
+    //日志
+    private Logger log = BaseLog.getLogger(AnnualcheckController.class);
+
     /**
      * 添加年检
      *
@@ -33,7 +40,8 @@ public class AnnualcheckController {
      */
     @RequestMapping("/addAnnualcheckAjax")
     @ResponseBody
-    public int addAnnualcheckAjax(Annualcheck annualcheck) {
+    public int addAnnualcheckAjax(@RequestBody Annualcheck annualcheck) {
+        log.error("addAnnualcheckAjax--"+annualcheck);
         annualcheck.setUserId(3);
         return annualcheckService.addAnnualcheck(annualcheck);
     }
@@ -84,9 +92,9 @@ public class AnnualcheckController {
      * @param annualcheckId
      * @return
      */
-    @RequestMapping("/findAnnualcheckById")
+    @RequestMapping("/findAnnualcheckByIdAjax")
     @ResponseBody
-    public AnnualcheckVo findAnnualcheckById(int annualcheckId) {
+    public AnnualcheckVo findAnnualcheckByIdAjax(int annualcheckId) {
         Annualcheck annualcheck = annualcheckService.findAnnualcheckById(annualcheckId);
         AnnualcheckVo annualcheckVo = new AnnualcheckVo();
         annualcheckVo.setAnnualcheck(annualcheck);
@@ -106,5 +114,5 @@ public class AnnualcheckController {
         annualcheckVo.setPageSum(annualcheckService.countAnnualcheck());
         return annualcheckVo;
     }
-    
+
 }

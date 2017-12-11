@@ -31,4 +31,7 @@ public interface AnnualcheckMapper {
     //-----------
     List<Annualcheck> selectByPage(int page);
 
+
+    Annualcheck selectfullByPrimaryKey(int annualcheckId);
+
 }
