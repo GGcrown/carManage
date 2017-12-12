@@ -84,6 +84,13 @@ function showAddInfo() {
     var $carAge = $('<div class="textarea"><label class="lab">车龄:</label>' +
         '<input class="info Wdate" name="carAge" type="text" onClick="WdatePicker()" /></div>');
     var $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label><input class="info" name="carLimit" /></div>');
+    var $fileUpload = $('<a class="fileUpload" id="fileUpload">点击选择图片</a>');
+    var $carPhoto = $('<div class="textarea"><label class="lab">上传图片</label> ' +
+        '<input type="file" class="hide" name="multipartFile"></div>');
+    var $img = $("<img display='hide' class='img' onerror='' height='100px' width='100px'>");
+
+    $carPhoto.append($fileUpload);
+
 
     $("#animateContent").append($carPlate);
     $("#animateContent").append($carMark);
@@ -91,12 +98,25 @@ function showAddInfo() {
     $("#animateContent").append($carMileage);
     $("#animateContent").append($carAge);
     $("#animateContent").append($carLimit);
+    $("#animateContent").append($carPhoto);
+    $("#animateContent").append($img);
+
     // 添加按钮
     var $addbtn = $("<a class='addbtn btn'>确认添加</a>");
     $("#animateContent").append($addbtn);
     $("#animateDIV").slideDown();
     //添加信息按钮
     addInfo($addbtn);
+
+    $fileUpload.click(function () {
+        $("input[name=multipartFile]").click();
+
+    });
+
+    $carPhoto.change(function () {
+        uploadImg();
+    })
+
 }
 
 
@@ -111,7 +131,6 @@ function infoDeatil($a) {
             success: function (data) {
                 console.log(data);
                 var $car = data.car;
-
                 $("#titleInfo").empty("");// 更改标题
                 $("#titleInfo").append("详细信息");
                 $("#animateContent").empty("");// 清空再加
@@ -263,6 +282,7 @@ function addInfo($addbtn) {
         var $carMileage = $(".info[name='carMileage']").val();
         var $carAge = $(".info[name='carAge']").val();
         var $carLimit = $(".info[name='carLimit']").val();
+        var $multipartFile = $("input[name='multipartFile']");
 
         var $data = '{"carPlate":"' + $carPlate + '","carMark":"' + $carMark + '","carColor":"' + $carColor
             + '","carMileage":"' + $carMileage + '","carAge":"' + $carAge + '","carLimit":' + $carLimit + '}';
@@ -283,5 +303,26 @@ function addInfo($addbtn) {
                 }
             }
         })
+    })
+}
+
+function uploadImg() {
+    var url = '/carManage/car/uplodingFileAjax.action';
+    var formData = new FormData($(".uploadForm")[0]);
+    $.ajax({
+        url: url,
+        type: "post",
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function (data) {
+            // console.log(data);
+            $(".img").prop("src", "http://localhost:8080/pic/temp/" + data.car.carPhoto);
+        },
+        error: function (returndata) {
+            console.log("error");
+//                  alert(returndata)
+        }
     })
 }

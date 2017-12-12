@@ -12,17 +12,17 @@ td {
     line-height: 1.42857143;
 }
 
-.tblcontent>tbody>tr>td, .tblcontent>thead>tr>th {
+.tblcontent > tbody > tr > td, .tblcontent > thead > tr > th {
     padding: 8px;
     border: 1px solid #DDD;
 }
 
-.tblcontent>tbody>tr>td {
+.tblcontent > tbody > tr > td {
     color: #393939;
     font-size: 13px;
 }
 
-.tblcontent>thead {
+.tblcontent > thead {
     background-color: #e7eaec;
     color: #434343;
 }
@@ -35,25 +35,25 @@ td {
     border: 1px solid #DDD;
 }
 
-.tbody>tr:nth-of-type(even) {
+.tbody > tr:nth-of-type(even) {
     background-color: #FFFFFF;
 }
 
-.tbody>tr:nth-of-type(odd) {
+.tbody > tr:nth-of-type(odd) {
     background-color: #F5F5F5;
 }
 
-.pages>ul {
+.pages > ul {
     /*margin: 0px;*/
 
 }
 
-.pages>ul>li {
+.pages > ul > li {
     display: inline;
     margin: 0px;
 }
 
-.pages>ul>li>a {
+.pages > ul > li > a {
     list-style-type: none;
     display: inline;
     color: #2283c5;
@@ -87,7 +87,7 @@ td {
 }
 
 /* a操作样式 */
-.tblcontent>tbody>tr>td>a {
+.tblcontent > tbody > tr > td > a {
     color: #337ab7;
     font-size: 23px;
     cursor: pointer;
@@ -128,7 +128,7 @@ td {
     margin-top: 15px;
 }
 
-#animateContent>.textarea {
+#animateContent > .textarea {
     margin-bottom: 20px;
 }
 
@@ -203,6 +203,25 @@ td {
     margin-left: 28%;
 }
 
-#hovera{
+#hovera {
     color: #23b7e5;
+}
+
+.img {
+    position: absolute;
+    left: 398px;
+    display: inherit;
+    top: 222px;
+}
+
+.hide{
+    display: none;
+}
+
+.fileUpload{
+    background-color: #00B7EE;
+    bottom: auto;
+    padding: 5px 35px;
+    color: #FFF;
+    border-radius: 4px;
 }

@@ -28,7 +28,6 @@ public class AnnualcheckController {
     @Autowired
     private AnnualcheckService annualcheckService;
 
-
     //日志
     private Logger log = BaseLog.getLogger(AnnualcheckController.class);
 
@@ -41,7 +40,7 @@ public class AnnualcheckController {
     @RequestMapping("/addAnnualcheckAjax")
     @ResponseBody
     public int addAnnualcheckAjax(@RequestBody Annualcheck annualcheck) {
-        log.error("addAnnualcheckAjax--"+annualcheck);
+        log.error("addAnnualcheckAjax--" + annualcheck);
         annualcheck.setUserId(3);
         return annualcheckService.addAnnualcheck(annualcheck);
     }

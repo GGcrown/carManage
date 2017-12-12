@@ -25,6 +25,8 @@ public class CarVo {
     private int pageSum;
     // 车辆信息
     private Car car;
+    // 查询信息
+    private String message;
 
 
     public int getPageSum() {
@@ -49,5 +51,13 @@ public class CarVo {
 
     public void setCar(Car car) {
         this.car = car;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

@@ -1,10 +1,10 @@
 package cn.boom.pojo;
 
-import java.util.Date;
-
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
 import cn.boom.util.JsonDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Date;
 
 public class Car {
 	private Integer carId;
@@ -37,6 +37,8 @@ public class Car {
 
 	/****/
 	private String userName;
+
+	private MultipartFile multipartFile;
 
 	public Integer getCarId() {
 		return carId;
@@ -160,7 +162,17 @@ public class Car {
 		this.userName = userName;
 	}
 
-	@Override
+
+
+    public MultipartFile getMultipartFile() {
+        return multipartFile;
+    }
+
+    public void setMultipartFile(MultipartFile multipartFile) {
+        this.multipartFile = multipartFile;
+    }
+
+    @Override
 	public String toString() {
 		return "Car [carId=" + carId + ", carPlate=" + carPlate + ", carMark=" + carMark + ", carColor=" + carColor
 				+ ", carMileage=" + carMileage + ", carLimit=" + carLimit + ", carAge=" + carAge + ", carPhoto="

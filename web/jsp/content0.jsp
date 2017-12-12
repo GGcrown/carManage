@@ -68,9 +68,9 @@
                     <span id="titleInfo">详细信息</span><a id="iconfontX" class="iconfont">&#xe638;</a>
                 </div>
             </div>
-            <div id="animateContent">
+            <form id="animateContent" class="uploadForm">
                 <!-- js生成 -->
-            </div>
+            </form>
         </div>
     </div>
 

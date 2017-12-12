@@ -2,33 +2,61 @@
 <html>
 
 <head>
-<meta charset="UTF-8">
-<title></title>
-<link rel="stylesheet" href="css/content_one.css" />
-<link rel="stylesheet" href="css/font.css" />
-<link rel="stylesheet" href="css/icon.css" />
-<!-- <link rel="stylesheet" href="jsp/sweetallert/dist/sweetalert2.css"> -->
-<!-- <script type="text/javascript" src="jsp/sweetallert/dist/sweetalert2.min.js"></script> -->
-<!-- <script type="text/javascript" src="jsp/js/jquery-3.2.1.js"></script> -->
-<script type="text/javascript" >
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/content_one.css"/>
+    <link rel="stylesheet" href="css/font.css"/>
+    <link rel="stylesheet" href="css/icon.css"/>
+    <!-- <link rel="stylesheet" href="jsp/sweetallert/dist/sweetalert2.css"> -->
+    <!-- <script type="text/javascript" src="jsp/sweetallert/dist/sweetalert2.min.js"></script> -->
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+    <script>
+        function uploadImg() {
+            var url = '/carManage/car/uplodingFileAjax.action';
+            var formData = new FormData($("#uploadForm")[0]);
+            $.ajax({
+                url: url,
+                type: "post",
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $(".img").prop("src", "http://localhost:8080/pic/" + data.car.carPhoto);
+                },
+                error: function (returndata) {
+                    console.log("error");
+//                  alert(returndata)
+                }
+            })
+        }
 
-</script>
+    </script>
 </head>
 
 <body>
-	<ul>
-		<li class="index"><a class="indexhome" href="#">首页</a></li>
-		<li class="index"><span class="fontawesome">&#xf105;</span>停车场管理</li>
-		<li class="index"><span class="fontawesome">&#xf105;</span>停车场管理</li>
-		<li class="index"><span class="fontawesome">&#xf105;</span>车辆调配</li>
-		<li class="index"><span class="fontawesome">&#xf105;</span>停车管理</li>
-	</ul>
-	<!--
-        	作者：1084961504@qq.com
-        	时间：2017-10-21
-        	描述：
-        -->
-	<hr style="height: 1px; border: none; border-top: 1px dotted #e2e2e2; width: 92%;" />
+<ul>
+    <li class="index"><a class="indexhome" href="#">首页</a></li>
+    <li class="index"><span class="fontawesome">&#xf105;</span>停车场管理</li>
+    <li class="index"><span class="fontawesome">&#xf105;</span>停车场管理</li>
+    <li class="index"><span class="fontawesome">&#xf105;</span>车辆调配</li>
+    <li class="index"><span class="fontawesome">&#xf105;</span>停车管理</li>
+</ul>
+
+<hr style="height: 1px; border: none; border-top: 1px dotted #e2e2e2; width: 92%;"/>
+<!--表单中enctype="multipart/form-data"的意思，是设置表单的MIME编码。
+默认情况，这个编码格式是application/x-www-form-urlencoded，不能用于文件上传；
+只有使用了multipart/form-data，才能完整的传递文件数据，进行下面的操作.
+enctype="multipart/form-data"是上传二进制数据;form里面的input的值以2进制的方式传过去。-->
+
+<form id="uploadForm" action="/carManage/car/uplodingFileAjax.action" method="post" enctype="multipart/form-data">
+    <input id="iii" type="file" value="提交文件" name="multipartFile" onchange="uploadImg()"
+           accept="image/png,image/jpeg,image/gif,image/vnd.sealedmedia.softseal-jpg"><br>
+    <a id="aj">send</a>
+    <img src="" width="100px" height="100px" class="img">
+    <!--<input type="submit" value="上传">-->
+</form>
+
 </body>
 
 </html>
