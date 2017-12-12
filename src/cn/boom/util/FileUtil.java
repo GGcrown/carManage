@@ -17,14 +17,14 @@ public class FileUtil {
      *
      * @return
      */
-    public String mkCalendarDir() {
+    public static String mkCalendarDir() {
         // 日期获取年月日
         Calendar calendar = Calendar.getInstance();
         int year = calendar.get(Calendar.YEAR);
         // 月份从0开始实际要+1
         int month = calendar.get(Calendar.MONTH) + 1;
         int day = calendar.get(Calendar.DAY_OF_MONTH);
-        String pathName = "H:\\car_photo\\" + year + "\\" + month + "\\" + day;
+        String pathName = "H:\\car_photo\\" + year + "\\" + month + "\\" + day+"\\";
         File file = new File(pathName);
         file.mkdirs();
         return pathName;
@@ -37,7 +37,7 @@ public class FileUtil {
      * @param filePath 文件路径
      * @return
      */
-    public boolean moveFile(String fileName, String filePath) {
+    public static boolean moveFile(String fileName, String filePath) {
         boolean flag = false;
         File tempFile = new File("H:\\car_photo\\temp\\" + fileName);
         System.out.println(tempFile.exists());

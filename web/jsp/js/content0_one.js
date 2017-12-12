@@ -134,18 +134,19 @@ function infoDeatil($a) {
                 $("#titleInfo").empty("");// 更改标题
                 $("#titleInfo").append("详细信息");
                 $("#animateContent").empty("");// 清空再加
-                $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label><span class="info">'
+                var $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label><span class="info">'
                     + $car.carPlate + '</span></div>');
-                $carMark = $('<div class="textarea"><label class="lab">车辆品牌:</label><span class="info">'
+                var $carMark = $('<div class="textarea"><label class="lab">车辆品牌:</label><span class="info">'
                     + $car.carMark + '</span></div>');
-                $carColor = $('<div class="textarea"><label class="lab">颜色:</label><span class="info">'
+                var $carColor = $('<div class="textarea"><label class="lab">颜色:</label><span class="info">'
                     + $car.carColor + '</span></div>');
-                $carMileage = $('<div class="textarea"><label class="lab">车辆总行程:</label><span class="info">'
+                var $carMileage = $('<div class="textarea"><label class="lab">车辆总行程:</label><span class="info">'
                     + $car.carMileage + '</span></div>');
-                $carAge = $('<div class="textarea"><label class="lab">车龄:</label><span class="info">'
+                var $carAge = $('<div class="textarea"><label class="lab">车龄:</label><span class="info">'
                     + $car.carAge + '</span></div>');
-                $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label><span class="info">'
+                var $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label><span class="info">'
                     + $car.carLimit + '</span></div>');
+                var $img = $("<img class='img' src='../pic/" + $car.carPhoto + "' onerror='' height='100px' width='100px'>");
 
                 $("#animateContent").append($carPlate);
                 $("#animateContent").append($carMark);
@@ -153,6 +154,7 @@ function infoDeatil($a) {
                 $("#animateContent").append($carMileage);
                 $("#animateContent").append($carAge);
                 $("#animateContent").append($carLimit);
+                $("#animateContent").append($img);
                 $("#animateDIV").slideDown();
             }
         });
@@ -225,6 +227,7 @@ function infoUpdate($update) {
                     + $car.carAge + '" onClick="WdatePicker()" /></div>');
                 var $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label>' +
                     '<input class="info" name="carLimit" value="' + $car.carLimit + '"/></div>');
+                var $img = $("<img class='img' src='../pic/" + $car.carPhoto + "' onerror='' height='100px' width='100px'>");
 
                 $("#animateContent").append($id);
                 $("#animateContent").append($carPlate);
@@ -233,6 +236,8 @@ function infoUpdate($update) {
                 $("#animateContent").append($carMileage);
                 $("#animateContent").append($carAge);
                 $("#animateContent").append($carLimit);
+                $("#animateContent").append($img);
+
                 // 添加修改按钮
                 var $update = $("<a class='update'>确认修改</a>");
                 $("#animateContent").append($update);
@@ -282,10 +287,12 @@ function addInfo($addbtn) {
         var $carMileage = $(".info[name='carMileage']").val();
         var $carAge = $(".info[name='carAge']").val();
         var $carLimit = $(".info[name='carLimit']").val();
-        var $multipartFile = $("input[name='multipartFile']");
+        var $carPhoto = $('.img').prop('src');
+        $carPhoto = $carPhoto.substring($carPhoto.indexOf("/temp/") + 6);
 
         var $data = '{"carPlate":"' + $carPlate + '","carMark":"' + $carMark + '","carColor":"' + $carColor
-            + '","carMileage":"' + $carMileage + '","carAge":"' + $carAge + '","carLimit":' + $carLimit + '}';
+            + '","carMileage":"' + $carMileage + '","carAge":"' + $carAge + '","carLimit":' + $carLimit
+            + ',"carPhoto":"' + $carPhoto + '"}';
         $.ajax({
             type: "post",
             url: "car/addCarAjax.action",

@@ -10,6 +10,7 @@ package cn.boom.controller;
 import cn.boom.pojo.Car;
 import cn.boom.service.CarService;
 import cn.boom.util.BaseLog;
+import cn.boom.util.FileUtil;
 import cn.boom.vo.CarVo;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,6 +113,15 @@ public class CarController {
     public int addCarAjax(@RequestBody Car car) {
         // 暂时还没有session
         // TODO
+        // 创建日期文件夹
+        String dirPath = FileUtil.mkCalendarDir();
+        // 移动文件到日期到日期文件夹
+        FileUtil.moveFile(car.getCarPhoto(), dirPath);
+        // 完整的路径
+        String fullPath = dirPath + car.getCarPhoto();
+        // 把完整路径存储到数据库
+        fullPath=fullPath.substring(fullPath.lastIndexOf("car_photo")+10);
+        car.setCarPhoto(fullPath);
         car.setCarUserid(1);
         return carService.addCar(car);
     }
