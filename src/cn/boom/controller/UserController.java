@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -36,9 +37,17 @@ public class UserController {
      * 用户登陆
      */
     @RequestMapping("/userlogin")
-    public String userlogin() {
-        userService.findUser("pkq");
-        return "NewFile";
+    public String userlogin(HttpSession session, User user) {
+        System.out.println(111111);
+        boolean flag = this.checkUser(user);
+        if (flag) {
+            User findUser = userService.findUser(user.getUsername());
+            if (user.getPassword().equals(findUser.getPassword())) {
+                session.setAttribute("currentUser", findUser);
+                return "redirect:/jsp/index.jsp";
+            }
+        }
+        return "login";
     }
 
     @RequestMapping("/addUserAjax")
@@ -135,4 +144,21 @@ public class UserController {
         return userId >= 1;
     }
 
+    /**
+     * 验证用户有效性
+     *
+     * @param user
+     * @return
+     */
+    public boolean checkUser(User user) {
+        boolean flag = false;
+        if (null != user) {
+            String username = user.getUsername();
+            String password = user.getPassword();
+            if (username != null && !username.isEmpty() && password != null && !password.isEmpty()) {
+                flag = true;
+            }
+        }
+        return flag;
+    }
 }

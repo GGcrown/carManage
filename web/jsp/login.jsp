@@ -1,28 +1,27 @@
-<!DOCTYPE html>
+<%--
+  User: crown
+  Date: 2017/12/13
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
 <html>
-
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>
-        HTML5 Login Page
-    </title>
-    <link rel="stylesheet" href="css/style.css">
+    <base href="<%=basePath%>">
+    <title>Title</title>
 
-    <script src="js/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="jsp/css/style.css">
+    <script src="jsp/js/jquery-3.2.1.js"></script>
 </head>
 
 <body>
 
-<!-- nav meta -->
-<div class="demo-meta">
-    <h1 class="demo-title">HTML5 Login Page</h1>
-    <p class="demo-desc">The login page traditionaly requires Email and Password. This demo shows how to crate it with
-        the new HTML5 input types, email and password.</p>
-</div>
-
 <!-- demo content -->
 <div class="loginform cf">
-    <form name="loginForm" action="/user/userlogin.action" method="post" accept-charset="utf-8">
+    <form name="loginForm" action="user/userlogin.action" method="post" accept-charset="utf-8">
         <ul>
             <li>
                 <label for="username">账号：</label>
@@ -41,5 +40,3 @@
 </div>
 
 </body>
-
-</html>

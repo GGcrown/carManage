@@ -55,7 +55,7 @@ function showInfoList(info) {
         });
 
         // 详细信息点击事件
-        infoDeatil($detail);
+        infoDetail($detail);
         // 修改信息点击事件
         infoUpdate($update);
         //删除信息点击事件
@@ -72,7 +72,7 @@ function cleanIndex(page) {
 // 显示
 function showAddInfo() {
     $("#titleInfo").empty("");// 更改标题
-        $("#titleInfo").append("添加车辆年检");
+    $("#titleInfo").append("添加车辆年检");
     $("#animateContent").empty("");// 清空再加
 
     $.ajax({
@@ -111,7 +111,7 @@ function showAddInfo() {
 }
 
 
-function infoDeatil($a) {// 详细信息点击事件
+function infoDetail($a) {// 详细信息点击事件
     $a.click(function () {
         var $carId = $(this).attr("cid");
         $.ajax({
@@ -125,18 +125,19 @@ function infoDeatil($a) {// 详细信息点击事件
                 $("#titleInfo").empty("");// 更改标题
                 $("#titleInfo").append("详细信息");
                 $("#animateContent").empty("");// 清空再加
-                $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label><span class="info">'
+                var $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label><span class="info">'
                     + $car.carPlate + '</span></div>');
-                $carMark = $('<div class="textarea"><label class="lab">车辆品牌:</label><span class="info">'
+                var $carMark = $('<div class="textarea"><label class="lab">车辆品牌:</label><span class="info">'
                     + $car.carMark + '</span></div>');
-                $carColor = $('<div class="textarea"><label class="lab">颜色:</label><span class="info">'
+                var $carColor = $('<div class="textarea"><label class="lab">颜色:</label><span class="info">'
                     + $car.carColor + '</span></div>');
-                $carMileage = $('<div class="textarea"><label class="lab">车辆总行程:</label><span class="info">'
+                var $carMileage = $('<div class="textarea"><label class="lab">车辆总行程:</label><span class="info">'
                     + $car.carMileage + '</span></div>');
-                $carAge = $('<div class="textarea"><label class="lab">车龄:</label><span class="info">'
+                var $carAge = $('<div class="textarea"><label class="lab">车龄:</label><span class="info">'
                     + $car.carAge + '</span></div>');
-                $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label><span class="info">'
+                var $carLimit = $('<div class="textarea"><label class="lab">车辆荷载人数:</label><span class="info">'
                     + $car.carLimit + '</span></div>');
+                var $img = $("<img class='img' src='../pic/" + $car.carPhoto + "' onerror='' height='100px' width='100px'>");
 
                 $("#animateContent").append($carPlate);
                 $("#animateContent").append($carMark);
@@ -144,6 +145,7 @@ function infoDeatil($a) {// 详细信息点击事件
                 $("#animateContent").append($carMileage);
                 $("#animateContent").append($carAge);
                 $("#animateContent").append($carLimit);
+                $("#animateContent").append($img);
                 $("#animateDIV").slideDown();
             }
         });
@@ -201,7 +203,7 @@ function infoUpdate($update) {
                 $("#animateContent").empty("");// 清空再加
 
 
-                var $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label><span class="info">'+$annualcheck.carPlate+'</span></div>');
+                var $carPlate = $('<div class="textarea"><label class="lab">车牌号:</label><span class="info">' + $annualcheck.carPlate + '</span></div>');
                 var $deptname = $('<div class="textarea"><label class="lab">车辆单位:</label><span class="info">'
                     + ' <input name="deptname" value="' + $annualcheck.deptname + '"/></span></div>');
                 var $lastannualcheckdate = $('<div class="textarea"><label class="lab">上次年检时间:</label><span class="info">'
@@ -263,7 +265,7 @@ function addInfo($addbtn) {
         var $data = '{"carId":' + $carId + ',"lastannualcheckdate":"' + $lastannualcheckdate + '","nextannualcheckdate":"' + $nextannualcheckdate
             + '","deptname":"' + $deptname + '"}';
         //获得当前页
-        // var $currentPage = $(".pages>ul>li>a[index='1']").text();
+        var $currentPage = $(".pages>ul>li>a[index='1']").text();
         $.ajax({
             type: "post",
             url: "annualcheck/addAnnualcheckAjax.action",
@@ -272,7 +274,7 @@ function addInfo($addbtn) {
             success: function (data) {
                 if (data > 0) {
                     // 刷新列表页面
-                    listPagingFlash();
+                    listPagingFlash($currentPage);
                     filpPage($("li>a[index=1]").text() - 1);
                     $("#animateDIV").hide();
                     swal("添加年检成功！");
@@ -284,6 +286,6 @@ function addInfo($addbtn) {
     })
 }
 
-function listPagingFlash() {
-    listPaging("annualcheck/countAnnualcheckAjax.action");
+function listPagingFlash($currentPage) {
+    listPaging("annualcheck/countAnnualcheckAjax.action", $currentPage);
 }

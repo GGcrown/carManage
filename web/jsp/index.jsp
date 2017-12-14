@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<%--
+  File: index
+  User: crown
+  Date: 2017/12/13
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 <head>
@@ -18,7 +23,7 @@
 
 <body>
 <div class="headtop">
-    <div class="brand-logo" style="color: white; font-size: 16px; height: 35px; line-height: 35px;">公务车管理系统${currentUser}</div>
+    <div class="brand-logo" style="color: white; font-size: 16px; height: 35px; line-height: 35px;">公务车管理系统${currentUser.username}</div>
     <div id="iconlist" class="iconfont menu">&#xe616;</div>
     <div id="menulist">
         <div id="home" class="menu menuClick">首页&nbsp;|</div>
@@ -31,7 +36,7 @@
         <div class="menu menuClick">
             <span class="iconfont set">&#xe676;</span>报表服务
         </div>
-        <div class="menu iconfont">&#xe626;</div>
+        <div class="menu iconfont">&#xe642;</div>
     </div>
 </div>
 

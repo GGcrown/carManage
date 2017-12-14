@@ -57,7 +57,7 @@ function showInfoList(info) {
         });
 
         // 详细信息点击事件
-        infoDeatil($detail);
+        infoDetail($detail);
         // 修改信息点击事件
         infoUpdate($update);
         //删除信息点击事件
@@ -120,7 +120,7 @@ function showAddInfo() {
 }
 
 
-function infoDeatil($a) {
+function infoDetail($a) {
     // 详细信息点击事件
     $a.click(function () {
         var $carId = $(this).attr("cid");
@@ -293,6 +293,7 @@ function addInfo($addbtn) {
         var $data = '{"carPlate":"' + $carPlate + '","carMark":"' + $carMark + '","carColor":"' + $carColor
             + '","carMileage":"' + $carMileage + '","carAge":"' + $carAge + '","carLimit":' + $carLimit
             + ',"carPhoto":"' + $carPhoto + '"}';
+        var $currentPage = $(".pages>ul>li>a[index='1']").text();
         $.ajax({
             type: "post",
             url: "car/addCarAjax.action",
@@ -301,7 +302,7 @@ function addInfo($addbtn) {
             success: function (data) {
                 if (data > 0) {
                     // 刷新列表页面
-                    listPaging("car/countCarAjax.action");
+                    listPaging("car/countCarAjax.action",$currentPage);
                     filpPage($("li>a[index=1]").text() - 1);
                     $("#animateDIV").hide();
                     swal("添加车辆成功！", "", "success");

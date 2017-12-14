@@ -7,12 +7,17 @@
     <link rel="stylesheet" href="css/content_one.css"/>
     <link rel="stylesheet" href="css/font.css"/>
     <link rel="stylesheet" href="css/icon.css"/>
+    <link rel="stylesheet" media="screen" type="text/css" href="zoomimage/css/layout.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="zoomimage/css/zoomimage.css" />
+    <link rel="stylesheet" media="screen" type="text/css" href="zoomimage/css/custom.css" />
 
+
+    <!--<script type="text/javascript" src="js/jquery-3.2.1.js"></script>-->
     <script type="text/javascript" src="zoomimage/js/jquery.js"></script>
-    <link rel="stylesheet"  media="screen"  type="text/css"  href="zoomimage/css/zoomimage.css"/>
     <script type="text/javascript" src="zoomimage/js/eye.js"></script>
     <script type="text/javascript" src="zoomimage/js/utils.js"></script>
     <script type="text/javascript" src="zoomimage/js/zoomimage.js"></script>
+        <!--<script type="text/javascript" src="js/jquery-3.2.1.js"></script>-->
 
 </head>
 
@@ -27,13 +32,16 @@
     <li class="index"><span class="fontawesome">&#xf105;</span>停车管理</li>
 </ul>
 <hr style="height:1px;border:none;border-top:1px dotted #e2e2e2;width:92%;"/>
-<img class="img" src="sweetallert/images/swal2-error.png">
+<!--<img class="img" src="sweetallert/images/swal2-error.png">-->
+<a href="zoomimage/images/bw3.jpg" class="bwGal"><img src="zoomimage/images/bw3.jpg" width="100px" height="100px" /></a>
 
-</body>
+
+<img src="zoomimage/images/bw3.jpg" height="67" width="100"/>
 <script type="text/javascript">
-        $(".img").zoomimage();
-        alert(11);
-
+    //        $(".img").z
+    $(function () {
+        $('a.bwGal').zoomimage();
+    })
 
 </script>
 

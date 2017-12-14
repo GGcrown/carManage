@@ -58,7 +58,7 @@ function showInfoList(info) {
         });
 
         // 详细信息点击事件
-        infoDeatil($detail);
+        infoDetail($detail);
         // 修改信息点击事件
         infoUpdate($update);
         //删除信息点击事件
@@ -115,7 +115,7 @@ function showAddInfo() {
 }
 
 
-function infoDeatil($a) {
+function infoDetail($a) {
     // 详细信息点击事件
     $a.click(function () {
         var $insuranceId = $(this).attr("insureid");
@@ -129,25 +129,22 @@ function infoDeatil($a) {
                 $("#titleInfo").empty("");// 更改标题
                 $("#titleInfo").append("详细信息");
                 $("#animateContent").empty("");// 清空再加
-                $type = $('<div class="textarea"><label class="lab">保险类型:</label><span class="info">' + data.insureTypeofinsurance
-                    + '</span></div>');
-                $sTime = $('<div class="textarea"><label class="lab">保险生效时间:</label><span class="info">' + data.insuranceStarttime
-                    + '</span></div>');
-                $eTime = $('<div class="textarea"><label class="lab">保险失效时间:</label><span class="info">' + data.insuranceEndtime
-                    + '</span></div>');
-                $filepath = $('<div class="textarea"><label class="lab">图片:</label><span class="info">' + data.filepath
-                    + '</span></div>');
-                $deptname = $('<div class="textarea"><label class="lab">车辆单位:</label><span class="info">' + data.deptname
-                    + '</span></div>');
-                $insureType = $('<div class="textarea"><label class="lab">保险类型:</label><span class="info">' + data.insureType
-                    + '</span></div>');
+                var $type = $('<div class="textarea"><label class="lab">保险类型:</label><span class="info">'
+                    + data.insureTypeofinsurance + '</span></div>');
+                var $sTime = $('<div class="textarea"><label class="lab">保险生效时间:</label><span class="info">'
+                    + data.insuranceStarttime + '</span></div>');
+                var $eTime = $('<div class="textarea"><label class="lab">保险失效时间:</label><span class="info">'
+                    + data.insuranceEndtime + '</span></div>');
+                var $filepath = $('<div class="textarea"><label class="lab">图片:</label><span class="info">'
+                    + data.filepath + '</span></div>');
+                var $deptname = $('<div class="textarea"><label class="lab">车辆单位:</label><span class="info">'
+                    + data.deptname + '</span></div>');
 
                 $("#animateContent").append($type);
                 $("#animateContent").append($sTime);
                 $("#animateContent").append($eTime);
                 $("#animateContent").append($filepath);
                 $("#animateContent").append($deptname);
-                $("#animateContent").append($insureType);
                 $("#animateDIV").slideDown();
             }
         });
