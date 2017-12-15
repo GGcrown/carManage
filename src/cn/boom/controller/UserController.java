@@ -117,6 +117,18 @@ public class UserController {
 
     }
 
+    /**
+     * 用户注销
+     *
+     * @param session
+     * @return
+     */
+    @RequestMapping("/userLogout")
+    public String userLogout(HttpSession session) {
+        session.removeAttribute("currentUser");
+        return "login";
+    }
+
 
     /**
      * 验证用户数据有效性
@@ -161,4 +173,6 @@ public class UserController {
         }
         return flag;
     }
+
+
 }

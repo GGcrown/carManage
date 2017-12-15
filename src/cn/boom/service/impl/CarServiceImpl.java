@@ -18,9 +18,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
+ * @author crown
  * @ClassName CarServiceImpl
  * @Description TODO
- * @author crown
  * @email 1084961504@qq.com
  * @date Oct 24, 2017 9:32:46 AM
  */
@@ -37,32 +37,32 @@ public class CarServiceImpl implements CarService {
     }
 
     /**
-     * @Description TODO
      * @return
+     * @Description TODO
      */
     @Override
     public int findCountCar() {
         CarExample example = new CarExample();
-        // example
+        example.createCriteria().andCarTypeNotEqualTo(3);
         int countCar = carMapper.countByExample(example);
         int page = countCar % Page.CAR_PAGE == 0 ? countCar / Page.CAR_PAGE : countCar / Page.CAR_PAGE + 1;
         return page;
     }
 
     /**
-     * @Description view car detail
      * @param carId
      * @return
+     * @Description view car detail
      */
-	@Override
-	public Car findCarById(int carId) {
-		return carMapper.selectByPrimaryKey(carId);
-	}
+    @Override
+    public Car findCarById(int carId) {
+        return carMapper.selectByPrimaryKey(carId);
+    }
 
     /**
-     * @Description TODO
      * @param car
      * @return
+     * @Description TODO
      */
     @Override
     public int updateCar(Car car) {
@@ -72,8 +72,8 @@ public class CarServiceImpl implements CarService {
     }
 
     /**
-     * @Description TODO
      * @return
+     * @Description TODO
      */
     @Override
     public int addCar(Car car) {
@@ -81,18 +81,23 @@ public class CarServiceImpl implements CarService {
     }
 
     /**
-     * @Description TODO
      * @param carId
      * @return
+     * @Description TODO
      */
     @Override
     public int deleteCar(int carId) {
-        return carMapper.deleteByPrimaryKey(carId);
+        Car car = new Car();
+        car.setCarId(carId);
+        car.setCarType(3);
+        return carMapper.updateByPrimaryKeySelective(car);
+        // return carMapper.deleteByPrimaryKey(carId);
     }
 
     @Override
     public List<Car> listCar() {
-        CarExample carExample=new CarExample();
+        CarExample carExample = new CarExample();
+        carExample.createCriteria().andCarTypeNotEqualTo(3);
         return carMapper.selectByExample(carExample);
     }
 

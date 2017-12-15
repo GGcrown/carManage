@@ -13,6 +13,8 @@
     <link rel="stylesheet" href="jsp/css/index_one.css"/>
     <link rel="stylesheet" href="jsp/css/icon.css"/>
     <link rel="stylesheet" type="text/css" href="jsp/css/font.css"/>
+	<link rel="stylesheet" href="jsp/sweetallert/dist/sweetalert2.css">
+	<script type="text/javascript" src="jsp/sweetallert/dist/sweetalert2.min.js"></script>
     <script type="text/javascript" src="jsp/js/jquery-3.2.1.js">
 
     </script>
@@ -36,7 +38,7 @@
         <div class="menu menuClick">
             <span class="iconfont set">&#xe676;</span>报表服务
         </div>
-        <div class="menu iconfont">&#xe642;</div>
+        <div class="menu iconfont" title="注销" id="logout">&#xe642;</div>
     </div>
 </div>
 
@@ -50,7 +52,7 @@
 					<li index="0">车辆管理</li>
 					<li index="1">保险管理</li>
 					<li index="2">用户管理</li>
-					<li index="3">车辆调配</li>
+					<li index="3">年检管理</li>
 				</ul>
 
 				<ul class="mainleftul">
@@ -111,6 +113,7 @@
         <iframe class="mainFrame" src="jsp/content9.html"></iframe>
         <iframe class="mainFrame" src="jsp/content10.html"></iframe>
     </div>
+    <a href="" id="a" style="display: none;"></a>
 </div>
 
 </body>

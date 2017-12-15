@@ -25,7 +25,7 @@ public class Car {
 
 	private Integer carUserid;
 
-	private String reserve1;
+	private Integer carType;
 
 	private String reserve2;
 
@@ -114,13 +114,6 @@ public class Car {
 		this.carUserid = carUserid;
 	}
 
-	public String getReserve1() {
-		return reserve1;
-	}
-
-	public void setReserve1(String reserve1) {
-		this.reserve1 = reserve1 == null ? null : reserve1.trim();
-	}
 
 	public String getReserve2() {
 		return reserve2;
@@ -162,9 +155,15 @@ public class Car {
 		this.userName = userName;
 	}
 
+	public Integer getCarType() {
+		return carType;
+	}
 
+	public void setCarType(Integer carType) {
+		this.carType = carType;
+	}
 
-    public MultipartFile getMultipartFile() {
+	public MultipartFile getMultipartFile() {
         return multipartFile;
     }
 

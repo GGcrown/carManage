@@ -712,73 +712,63 @@ public class CarExample {
             return (Criteria) this;
         }
 
-        public Criteria andReserve1IsNull() {
-            addCriterion("reserve1 is null");
+        public Criteria andCarTypeIsNull() {
+            addCriterion("car_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1IsNotNull() {
-            addCriterion("reserve1 is not null");
+        public Criteria andCarTypeIsNotNull() {
+            addCriterion("car_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1EqualTo(String value) {
-            addCriterion("reserve1 =", value, "reserve1");
+        public Criteria andCarTypeEqualTo(Integer value) {
+            addCriterion("car_type =", value, "carType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1NotEqualTo(String value) {
-            addCriterion("reserve1 <>", value, "reserve1");
+        public Criteria andCarTypeNotEqualTo(Integer value) {
+            addCriterion("car_type <>", value, "carType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1GreaterThan(String value) {
-            addCriterion("reserve1 >", value, "reserve1");
+        public Criteria andCarTypeGreaterThan(Integer value) {
+            addCriterion("car_type >", value, "carType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1GreaterThanOrEqualTo(String value) {
-            addCriterion("reserve1 >=", value, "reserve1");
+        public Criteria andCarTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("car_type >=", value, "carType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1LessThan(String value) {
-            addCriterion("reserve1 <", value, "reserve1");
+        public Criteria andCarTypeLessThan(Integer value) {
+            addCriterion("car_type <", value, "carType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1LessThanOrEqualTo(String value) {
-            addCriterion("reserve1 <=", value, "reserve1");
+        public Criteria andCarTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("car_type <=", value, "carType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1Like(String value) {
-            addCriterion("reserve1 like", value, "reserve1");
+        public Criteria andCarTypeIn(List<Integer> values) {
+            addCriterion("car_type in", values, "carType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1NotLike(String value) {
-            addCriterion("reserve1 not like", value, "reserve1");
+        public Criteria andCarTypeNotIn(List<Integer> values) {
+            addCriterion("car_type not in", values, "carType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1In(List<String> values) {
-            addCriterion("reserve1 in", values, "reserve1");
+        public Criteria andCarTypeBetween(Integer value1, Integer value2) {
+            addCriterion("car_type between", value1, value2, "carType");
             return (Criteria) this;
         }
 
-        public Criteria andReserve1NotIn(List<String> values) {
-            addCriterion("reserve1 not in", values, "reserve1");
-            return (Criteria) this;
-        }
-
-        public Criteria andReserve1Between(String value1, String value2) {
-            addCriterion("reserve1 between", value1, value2, "reserve1");
-            return (Criteria) this;
-        }
-
-        public Criteria andReserve1NotBetween(String value1, String value2) {
-            addCriterion("reserve1 not between", value1, value2, "reserve1");
+        public Criteria andCarTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("car_type not between", value1, value2, "carType");
             return (Criteria) this;
         }
 
