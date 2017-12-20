@@ -11,21 +11,12 @@ import cn.boom.pojo.Car;
 
 import java.util.List;
 
+
 /**
- * @author crown
- * @ClassName CarService
- * @Description TODO
- * @email 1084961504@qq.com
- * @date Oct 24, 2017 9:32:18 AM
+ * 汽车服务层
  */
 public interface CarService {
 
-    /**
-     * @param page
-     * @Description findCarList
-     * @author crown
-     * @date Oct 24, 2017
-     */
     List<Car> findCarList(int page);
 
     /**

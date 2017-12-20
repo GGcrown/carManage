@@ -1,15 +1,15 @@
 package cn.boom.pojo;
 
 public class User {
-    //用户id
-    private Integer userid;
-    //用户账号
-    private String username;
-    //用户密码
-    private String password;
-    //用户类型  0-管理员   1-普通用户  3-被删除用户
-    private Integer usertype;
-    //保留字段
+
+    private Integer userid;// 用户id
+
+    private String username;// 用户账号
+
+    private String password;// 用户密码
+
+    private Integer usertype;// 用户类型  0-管理员   1-普通用户  3-被删除用户
+    // 保留字段
     private String reserve1;
 
     private String reserve2;

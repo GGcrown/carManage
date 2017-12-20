@@ -30,15 +30,19 @@ import java.util.List;
 @Controller
 public class UserController {
 
+    // 用户控制层
     @Autowired
     private UserService userService;
 
-    /*
-     * 用户登陆
+    /**
+     * 用户登录
+     *
+     * @param session 会话
+     * @param user    用户
+     * @return
      */
     @RequestMapping("/userlogin")
     public String userlogin(HttpSession session, User user) {
-        System.out.println(111111);
         boolean flag = this.checkUser(user);
         if (flag) {
             User findUser = userService.findUser(user.getUsername());
@@ -50,6 +54,12 @@ public class UserController {
         return "login";
     }
 
+    /**
+     * 添加用户ajax
+     *
+     * @param user
+     * @return
+     */
     @RequestMapping("/addUserAjax")
     @ResponseBody
     public int addUserAjax(@RequestBody User user) {
@@ -62,29 +72,44 @@ public class UserController {
         return 0;
     }
 
+    /**
+     * 通过id删除用户ajax
+     *
+     * @param userid 用户id
+     * @return
+     */
     @RequestMapping("/deleteUserByIdAjax")
     @ResponseBody
     public int deleteUserAjax(int userid) {
         //验证id
         if (checkUserId(userid)) {
-            int result = userService.deleteUser(userid);
-            return result;
+            return userService.deleteUser(userid);
         }
         return 0;
     }
 
-
+    /**
+     * 通过用户id更新用户
+     *
+     * @param user 用户
+     * @return
+     */
     @RequestMapping("/updateUserAjax")
     @ResponseBody
     public int updateUserAjax(@RequestBody User user) {
         //验证用户数据
         if (checkUserId(user.getUserid())) {
-            int result = userService.updateUser(user);
-            return result;
+            return userService.updateUser(user);
         }
         return 0;
     }
 
+    /**
+     * 分页查询用户列表ajax
+     *
+     * @param page 页数
+     * @return
+     */
     @RequestMapping("/findUserListAjax")
     @ResponseBody
     public UserVo findUserListAjax(int page) {
@@ -94,6 +119,12 @@ public class UserController {
         return userVo;
     }
 
+    /**
+     * 通过用户id查询用户ajax
+     *
+     * @param userid 用户id
+     * @return
+     */
     @RequestMapping("/findUserByIdAjax")
     @ResponseBody
     public UserVo findUserByIdAjax(int userid) {
@@ -107,6 +138,11 @@ public class UserController {
         return null;
     }
 
+    /**
+     * 通过用户页数
+     *
+     * @return
+     */
     @RequestMapping("/countUserAjax")
     @ResponseBody
     public UserVo countUserAjax() {
@@ -120,7 +156,7 @@ public class UserController {
     /**
      * 用户注销
      *
-     * @param session
+     * @param session 会话
      * @return
      */
     @RequestMapping("/userLogout")
@@ -133,10 +169,10 @@ public class UserController {
     /**
      * 验证用户数据有效性
      *
-     * @param user
+     * @param user  用户
      * @return True:数据有效    False:数据无效
      */
-    public boolean checkUserData(User user) {
+    private boolean checkUserData(User user) {
         //判断是否为空
         if (user == null || user.getUsername() == null || user.getPassword() == null
                 || user.getUsertype() == null) {
@@ -149,20 +185,20 @@ public class UserController {
     /**
      * 验证用户id有效性
      *
-     * @param userId
+     * @param userId   用户id
      * @return True:数据有效    False:数据无效
      */
-    public boolean checkUserId(int userId) {
+    private boolean checkUserId(int userId) {
         return userId >= 1;
     }
 
     /**
      * 验证用户有效性
      *
-     * @param user
-     * @return
+     * @param user 用户
+     * @return True:数据有效    False:数据无效
      */
-    public boolean checkUser(User user) {
+    private boolean checkUser(User user) {
         boolean flag = false;
         if (null != user) {
             String username = user.getUsername();

@@ -353,7 +353,7 @@
 		where car_id = #{carId,jdbcType=INTEGER}
 	</update>
 
-    <!-- sssssssssssss -->
+    <!-- myself -->
     <select id="selectByPage" parameterType="int" resultMap="BaseResultMap">
 		select c.*,u.username
 		from car c inner JOIN user u on c.car_userid=u.userid

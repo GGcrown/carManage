@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+/**
+ * 用户dao接口
+ */
 public interface UserMapper {
     int countByExample(UserExample example);
 

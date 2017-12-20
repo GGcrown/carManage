@@ -2,9 +2,13 @@ package cn.boom.dao;
 
 import cn.boom.pojo.Insurance;
 import cn.boom.pojo.InsuranceExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+/**
+ * 年检dao接口
+ */
 public interface InsuranceMapper {
 	int countByExample(InsuranceExample example);
 

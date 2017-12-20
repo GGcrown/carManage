@@ -5,23 +5,27 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Date;
 
+/**
+ * 年检pojo
+ */
 public class Annualcheck {
-    // 年检id
-    private Integer annualcheckId;
-    // 最后年检日期
-    private Date lastannualcheckdate;
-    // 下次年检日期
-    private Date nextannualcheckdate;
-    // 图片路径
-    private String path;
-    // 投保单位
-    private String deptname;
-    // 用户id
-    private Integer userId;
-    // 车辆id
-    private Integer carId;
-    // 年检状态 1:正常  2:不正常   3:被删除
-    private Integer annualcheckType;
+
+    private Integer annualcheckId;// 年检id
+
+    private Date lastannualcheckdate;// 最后年检日期
+
+    private Date nextannualcheckdate;// 下次年检日期
+
+    private String path;// 图片路径
+
+    private String deptname;// 投保单位
+
+    private Integer userId;// 用户id
+
+    private Integer carId;// 车辆id
+
+    private Integer annualcheckType;// 年检状态 1:正常  2:不正常   3:被删除
+
     // 保留字段
     private String reserve2;
 
@@ -32,8 +36,8 @@ public class Annualcheck {
     private String reserve5;
 
     private String reserve6;
-    // 车牌号  非表内字段
-    private String carPlate;
+
+    private String carPlate;// 车牌号  非表内字段
 
     public Integer getAnnualcheckId() {
         return annualcheckId;

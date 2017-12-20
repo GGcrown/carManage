@@ -306,7 +306,7 @@
         where userid = #{userid,jdbcType=INTEGER}
     </update>
 
-    <!--oneself write-->
+    <!--oneself-->
     <select id="selectByPage" parameterType="int" resultMap="BaseResultMap">
         SELECT * FROM USER WHERE USERTYPE != 3 LIMIT #{0} ,5
     </select>

@@ -1,40 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="cn.boom.dao.AnnualcheckMapper" >
-    <resultMap id="BaseResultMap" type="cn.boom.pojo.Annualcheck" >
-        <id column="annualcheck_id" property="annualcheckId" jdbcType="INTEGER" />
-        <result column="lastAnnualCheckDate" property="lastannualcheckdate" jdbcType="DATE" />
-        <result column="nextAnnualCheckDate" property="nextannualcheckdate" jdbcType="DATE" />
-        <result column="path" property="path" jdbcType="VARCHAR" />
-        <result column="deptname" property="deptname" jdbcType="VARCHAR" />
-        <result column="user_id" property="userId" jdbcType="INTEGER" />
-        <result column="car_id" property="carId" jdbcType="INTEGER" />
-        <result column="annualcheck_type" property="annualcheckType" jdbcType="INTEGER" />
-        <result column="reserve2" property="reserve2" jdbcType="VARCHAR" />
-        <result column="reserve3" property="reserve3" jdbcType="VARCHAR" />
-        <result column="reserve4" property="reserve4" jdbcType="VARCHAR" />
-        <result column="reserve5" property="reserve5" jdbcType="VARCHAR" />
-        <result column="reserve6" property="reserve6" jdbcType="VARCHAR" />
+<mapper namespace="cn.boom.dao.AnnualcheckMapper">
+    <resultMap id="BaseResultMap" type="cn.boom.pojo.Annualcheck">
+        <id column="annualcheck_id" property="annualcheckId" jdbcType="INTEGER"/>
+        <result column="lastAnnualCheckDate" property="lastannualcheckdate" jdbcType="DATE"/>
+        <result column="nextAnnualCheckDate" property="nextannualcheckdate" jdbcType="DATE"/>
+        <result column="path" property="path" jdbcType="VARCHAR"/>
+        <result column="deptname" property="deptname" jdbcType="VARCHAR"/>
+        <result column="user_id" property="userId" jdbcType="INTEGER"/>
+        <result column="car_id" property="carId" jdbcType="INTEGER"/>
+        <result column="annualcheck_type" property="annualcheckType" jdbcType="INTEGER"/>
+        <result column="reserve2" property="reserve2" jdbcType="VARCHAR"/>
+        <result column="reserve3" property="reserve3" jdbcType="VARCHAR"/>
+        <result column="reserve4" property="reserve4" jdbcType="VARCHAR"/>
+        <result column="reserve5" property="reserve5" jdbcType="VARCHAR"/>
+        <result column="reserve6" property="reserve6" jdbcType="VARCHAR"/>
     </resultMap>
-    <sql id="Example_Where_Clause" >
-        <where >
-            <foreach collection="oredCriteria" item="criteria" separator="or" >
-                <if test="criteria.valid" >
-                    <trim prefix="(" suffix=")" prefixOverrides="and" >
-                        <foreach collection="criteria.criteria" item="criterion" >
-                            <choose >
-                                <when test="criterion.noValue" >
+    <sql id="Example_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                                     and ${criterion.condition}
                                 </when>
-                                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                                     and ${criterion.condition} #{criterion.value}
                                 </when>
-                                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                                     and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                                 </when>
-                                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -45,25 +46,26 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Update_By_Example_Where_Clause" >
-        <where >
-            <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-                <if test="criteria.valid" >
-                    <trim prefix="(" suffix=")" prefixOverrides="and" >
-                        <foreach collection="criteria.criteria" item="criterion" >
-                            <choose >
-                                <when test="criterion.noValue" >
+    <sql id="Update_By_Example_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                                     and ${criterion.condition}
                                 </when>
-                                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                                     and ${criterion.condition} #{criterion.value}
                                 </when>
-                                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                                     and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                                 </when>
-                                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -74,42 +76,42 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Base_Column_List" >
+    <sql id="Base_Column_List">
         annualcheck_id, lastAnnualCheckDate, nextAnnualCheckDate, path, deptname, user_id,
         car_id, annualcheck_type, reserve2, reserve3, reserve4, reserve5, reserve6
     </sql>
 
-    <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.boom.pojo.AnnualcheckExample" >
+    <select id="selectByExample" resultMap="BaseResultMap" parameterType="cn.boom.pojo.AnnualcheckExample">
         select
-        <if test="distinct" >
+        <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from annualcheck
-        <if test="_parameter != null" >
-            <include refid="Example_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
         </if>
-        <if test="orderByClause != null" >
+        <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from annualcheck
         where annualcheck_id = #{annualcheckId,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         delete from annualcheck
         where annualcheck_id = #{annualcheckId,jdbcType=INTEGER}
     </delete>
-    <delete id="deleteByExample" parameterType="cn.boom.pojo.AnnualcheckExample" >
+    <delete id="deleteByExample" parameterType="cn.boom.pojo.AnnualcheckExample">
         delete from annualcheck
-        <if test="_parameter != null" >
-            <include refid="Example_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="cn.boom.pojo.Annualcheck" >
+    <insert id="insert" parameterType="cn.boom.pojo.Annualcheck">
         insert into annualcheck (annualcheck_id, lastAnnualCheckDate,
         nextAnnualCheckDate, path, deptname,
         user_id, car_id, annualcheck_type,
@@ -121,145 +123,145 @@
         #{reserve2,jdbcType=VARCHAR}, #{reserve3,jdbcType=VARCHAR}, #{reserve4,jdbcType=VARCHAR},
         #{reserve5,jdbcType=VARCHAR}, #{reserve6,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="cn.boom.pojo.Annualcheck" >
+    <insert id="insertSelective" parameterType="cn.boom.pojo.Annualcheck">
         insert into annualcheck
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="annualcheckId != null" >
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="annualcheckId != null">
                 annualcheck_id,
             </if>
-            <if test="lastannualcheckdate != null" >
+            <if test="lastannualcheckdate != null">
                 lastAnnualCheckDate,
             </if>
-            <if test="nextannualcheckdate != null" >
+            <if test="nextannualcheckdate != null">
                 nextAnnualCheckDate,
             </if>
-            <if test="path != null" >
+            <if test="path != null">
                 path,
             </if>
-            <if test="deptname != null" >
+            <if test="deptname != null">
                 deptname,
             </if>
-            <if test="userId != null" >
+            <if test="userId != null">
                 user_id,
             </if>
-            <if test="carId != null" >
+            <if test="carId != null">
                 car_id,
             </if>
-            <if test="annualcheckType != null" >
+            <if test="annualcheckType != null">
                 annualcheck_type,
             </if>
-            <if test="reserve2 != null" >
+            <if test="reserve2 != null">
                 reserve2,
             </if>
-            <if test="reserve3 != null" >
+            <if test="reserve3 != null">
                 reserve3,
             </if>
-            <if test="reserve4 != null" >
+            <if test="reserve4 != null">
                 reserve4,
             </if>
-            <if test="reserve5 != null" >
+            <if test="reserve5 != null">
                 reserve5,
             </if>
-            <if test="reserve6 != null" >
+            <if test="reserve6 != null">
                 reserve6,
             </if>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="annualcheckId != null" >
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="annualcheckId != null">
                 #{annualcheckId,jdbcType=INTEGER},
             </if>
-            <if test="lastannualcheckdate != null" >
+            <if test="lastannualcheckdate != null">
                 #{lastannualcheckdate,jdbcType=DATE},
             </if>
-            <if test="nextannualcheckdate != null" >
+            <if test="nextannualcheckdate != null">
                 #{nextannualcheckdate,jdbcType=DATE},
             </if>
-            <if test="path != null" >
+            <if test="path != null">
                 #{path,jdbcType=VARCHAR},
             </if>
-            <if test="deptname != null" >
+            <if test="deptname != null">
                 #{deptname,jdbcType=VARCHAR},
             </if>
-            <if test="userId != null" >
+            <if test="userId != null">
                 #{userId,jdbcType=INTEGER},
             </if>
-            <if test="carId != null" >
+            <if test="carId != null">
                 #{carId,jdbcType=INTEGER},
             </if>
-            <if test="annualcheckType != null" >
+            <if test="annualcheckType != null">
                 #{annualcheckType,jdbcType=INTEGER},
             </if>
-            <if test="reserve2 != null" >
+            <if test="reserve2 != null">
                 #{reserve2,jdbcType=VARCHAR},
             </if>
-            <if test="reserve3 != null" >
+            <if test="reserve3 != null">
                 #{reserve3,jdbcType=VARCHAR},
             </if>
-            <if test="reserve4 != null" >
+            <if test="reserve4 != null">
                 #{reserve4,jdbcType=VARCHAR},
             </if>
-            <if test="reserve5 != null" >
+            <if test="reserve5 != null">
                 #{reserve5,jdbcType=VARCHAR},
             </if>
-            <if test="reserve6 != null" >
+            <if test="reserve6 != null">
                 #{reserve6,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="cn.boom.pojo.AnnualcheckExample" resultType="java.lang.Integer" >
+    <select id="countByExample" parameterType="cn.boom.pojo.AnnualcheckExample" resultType="java.lang.Integer">
         select count(*) from annualcheck
-        <if test="_parameter != null" >
-            <include refid="Example_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
         </if>
     </select>
-    <update id="updateByExampleSelective" parameterType="map" >
+    <update id="updateByExampleSelective" parameterType="map">
         update annualcheck
-        <set >
-            <if test="record.annualcheckId != null" >
+        <set>
+            <if test="record.annualcheckId != null">
                 annualcheck_id = #{record.annualcheckId,jdbcType=INTEGER},
             </if>
-            <if test="record.lastannualcheckdate != null" >
+            <if test="record.lastannualcheckdate != null">
                 lastAnnualCheckDate = #{record.lastannualcheckdate,jdbcType=DATE},
             </if>
-            <if test="record.nextannualcheckdate != null" >
+            <if test="record.nextannualcheckdate != null">
                 nextAnnualCheckDate = #{record.nextannualcheckdate,jdbcType=DATE},
             </if>
-            <if test="record.path != null" >
+            <if test="record.path != null">
                 path = #{record.path,jdbcType=VARCHAR},
             </if>
-            <if test="record.deptname != null" >
+            <if test="record.deptname != null">
                 deptname = #{record.deptname,jdbcType=VARCHAR},
             </if>
-            <if test="record.userId != null" >
+            <if test="record.userId != null">
                 user_id = #{record.userId,jdbcType=INTEGER},
             </if>
-            <if test="record.carId != null" >
+            <if test="record.carId != null">
                 car_id = #{record.carId,jdbcType=INTEGER},
             </if>
-            <if test="record.annualcheckType != null" >
+            <if test="record.annualcheckType != null">
                 annualcheck_type = #{record.annualcheckType,jdbcType=INTEGER},
             </if>
-            <if test="record.reserve2 != null" >
+            <if test="record.reserve2 != null">
                 reserve2 = #{record.reserve2,jdbcType=VARCHAR},
             </if>
-            <if test="record.reserve3 != null" >
+            <if test="record.reserve3 != null">
                 reserve3 = #{record.reserve3,jdbcType=VARCHAR},
             </if>
-            <if test="record.reserve4 != null" >
+            <if test="record.reserve4 != null">
                 reserve4 = #{record.reserve4,jdbcType=VARCHAR},
             </if>
-            <if test="record.reserve5 != null" >
+            <if test="record.reserve5 != null">
                 reserve5 = #{record.reserve5,jdbcType=VARCHAR},
             </if>
-            <if test="record.reserve6 != null" >
+            <if test="record.reserve6 != null">
                 reserve6 = #{record.reserve6,jdbcType=VARCHAR},
             </if>
         </set>
-        <if test="_parameter != null" >
-            <include refid="Update_By_Example_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByExample" parameterType="map" >
+    <update id="updateByExample" parameterType="map">
         update annualcheck
         set annualcheck_id = #{record.annualcheckId,jdbcType=INTEGER},
         lastAnnualCheckDate = #{record.lastannualcheckdate,jdbcType=DATE},
@@ -274,53 +276,53 @@
         reserve4 = #{record.reserve4,jdbcType=VARCHAR},
         reserve5 = #{record.reserve5,jdbcType=VARCHAR},
         reserve6 = #{record.reserve6,jdbcType=VARCHAR}
-        <if test="_parameter != null" >
-            <include refid="Update_By_Example_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="cn.boom.pojo.Annualcheck" >
+    <update id="updateByPrimaryKeySelective" parameterType="cn.boom.pojo.Annualcheck">
         update annualcheck
-        <set >
-            <if test="lastannualcheckdate != null" >
+        <set>
+            <if test="lastannualcheckdate != null">
                 lastAnnualCheckDate = #{lastannualcheckdate,jdbcType=DATE},
             </if>
-            <if test="nextannualcheckdate != null" >
+            <if test="nextannualcheckdate != null">
                 nextAnnualCheckDate = #{nextannualcheckdate,jdbcType=DATE},
             </if>
-            <if test="path != null" >
+            <if test="path != null">
                 path = #{path,jdbcType=VARCHAR},
             </if>
-            <if test="deptname != null" >
+            <if test="deptname != null">
                 deptname = #{deptname,jdbcType=VARCHAR},
             </if>
-            <if test="userId != null" >
+            <if test="userId != null">
                 user_id = #{userId,jdbcType=INTEGER},
             </if>
-            <if test="carId != null" >
+            <if test="carId != null">
                 car_id = #{carId,jdbcType=INTEGER},
             </if>
-            <if test="annualcheckType != null" >
+            <if test="annualcheckType != null">
                 annualcheck_type = #{annualcheckType,jdbcType=INTEGER},
             </if>
-            <if test="reserve2 != null" >
+            <if test="reserve2 != null">
                 reserve2 = #{reserve2,jdbcType=VARCHAR},
             </if>
-            <if test="reserve3 != null" >
+            <if test="reserve3 != null">
                 reserve3 = #{reserve3,jdbcType=VARCHAR},
             </if>
-            <if test="reserve4 != null" >
+            <if test="reserve4 != null">
                 reserve4 = #{reserve4,jdbcType=VARCHAR},
             </if>
-            <if test="reserve5 != null" >
+            <if test="reserve5 != null">
                 reserve5 = #{reserve5,jdbcType=VARCHAR},
             </if>
-            <if test="reserve6 != null" >
+            <if test="reserve6 != null">
                 reserve6 = #{reserve6,jdbcType=VARCHAR},
             </if>
         </set>
         where annualcheck_id = #{annualcheckId,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="cn.boom.pojo.Annualcheck" >
+    <update id="updateByPrimaryKey" parameterType="cn.boom.pojo.Annualcheck">
         update annualcheck
         set lastAnnualCheckDate = #{lastannualcheckdate,jdbcType=DATE},
         nextAnnualCheckDate = #{nextannualcheckdate,jdbcType=DATE},
@@ -336,7 +338,7 @@
         reserve6 = #{reserve6,jdbcType=VARCHAR}
         where annualcheck_id = #{annualcheckId,jdbcType=INTEGER}
     </update>
-    <!---->
+    <!--myself-->
     <select id="selectByPage" parameterType="int" resultMap="BaseResultMap">
         SELECT annualcheck.*,car.car_plate AS carPlate
         FROM annualcheck INNER JOIN car ON annualcheck.car_id=car.car_id
@@ -344,8 +346,7 @@
         LIMIT #{0},5
     </select>
 
-
-    <select id="selectfullByPrimaryKey" resultMap="BaseResultMap" parameterType="int" >
+    <select id="selectfullByPrimaryKey" resultMap="BaseResultMap" parameterType="int">
         SELECT annualcheck.* , car.car_plate as carPlate
         from annualcheck INNER JOIN car ON annualcheck.car_id=car.car_id
         where annualcheck_id = #{annualcheckId,jdbcType=INTEGER}

@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
+/**
+ * 年检dao接口
+ */
 public interface AnnualcheckMapper {
     int countByExample(AnnualcheckExample example);
 
@@ -28,6 +31,7 @@ public interface AnnualcheckMapper {
     int updateByPrimaryKeySelective(Annualcheck record);
 
     int updateByPrimaryKey(Annualcheck record);
+
     //-----------
     List<Annualcheck> selectByPage(int page);
 

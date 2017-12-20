@@ -2,9 +2,13 @@ package cn.boom.dao;
 
 import cn.boom.pojo.Car;
 import cn.boom.pojo.CarExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
+/**
+ * 汽车dao接口
+ */
 public interface CarMapper {
     int countByExample(CarExample example);
 
